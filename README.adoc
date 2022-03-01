@@ -1,0 +1,139 @@
+= Kontainers
+:imagesdir: docs/images
+ifdef::env-github[]
+:imagesdir: https://github.com/microkt/kontainers/blob/main/docs/images/
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:note-caption: :information_source:
+:tip-caption: :bulb:
+:warning-caption: :warning:
+endif::[]
+:toc: macro
+:toclevels: 3
+:toc-title:
+
+== Purpose
+
+Kontainers provides the capability to run Open Container Images (OCI) on
+Docker and Kubernetes. This can be valuable in cases where you want to run a
+database or messaging system for integration testing and then tear down such
+resources after tests completes.
+
+Kontainers enables users to write and run their tests locally with Docker
+while also utilizing modern, Kubernetes based CI/CD systems that may not
+permit or support Docker-in-Docker.
+
+== Architecture
+
+Kontainers provides a platform-agnostic Kontainer specification that allows users
+to define a request to run a container or Docker and K8S. The specification is then
+used by a Kontainer factory to start the container on either Docker or Kubernetes,
+depending on the capabilities of the platform on which your code is run.
+
+image::arch.png[align="center"]
+
+== Using Kontainers
+
+IMPORTANT: Kontainers is currently pre-release software. API contracts and
+behavior are subject to change.
+
+=== Add Dependencies
+
+Import the Kontainer factory and any runners you'd like to use as test
+dependencies.
+
+[source,kotlin]
+dependencies {
+    testImplementation("io.microkt.kontainers:kontainer-runner-factory:$version")
+    testImplementation("io.microkt.kontainers:postgresql:$version")
+}
+
+=== Configure Tests
+
+Tests can be configured using `@BeforeAll` and `@AfterAll` but a simpler mechanism
+is available with JUnit 5.
+
+TODO: examples of test patterns.
+
+=== Kontainer Specs
+
+Kontainers uses a backend neutral Kontainer specification to define a Kontainer.
+You can use an existing spec, extend an existing spec, or write a spec from scratch.
+
+==== Using an Existing Spec
+
+For instance, if you're using a Redis Kontainer, you can simply import its spec
+`RedisKontainerFactory`, and start create the Kontainer.
+
+[source,kotlin]
+val redisFactory = RedisContainerFactory()
+val redis = redisFactory.createKontainer()
+
+==== Extending an Existing Spec
+
+Using a Redis Kontainer again, you can import its spec
+`redisKontainerSpec`, and extend it using the Kontainer Spec DSL.
+
+[source,kotlin]
+val spec = kontainerSpec(redisContainerSpec) {
+    // apply customizations, example
+    image = "redis:latest"
+}
+val redisFactory = RedisContainerFactory()
+val redis = redisFactory.createKontainer(redisKontainerSpec)
+
+==== Spec from Scratch
+
+If you want to run a Kontainer that doesn't yet have a spec, you can define your own:
+
+[source,kotlin]
+private val mysqlSpec = kontainerSpec {
+    name = "mysql"
+    image = "mysql:latest",
+    environment {
+        set("MYSQL_ROOT_PASSWORD" to "pass")
+    }
+    ports {
+        expose tcp 3306
+    }
+}
+
+== Contributing
+
+If you'd like to fix a bug or contribute a new container, fork this repository (or branch
+if you have access) and create a pull request.
+
+If you'd like to introduce a new feature or change something related to Kontainers'
+pre-release architecture, start a discussion or create an issue to discuss changes with
+the group before writing code.
+
+=== Understanding Tests
+
+There are three types of tests in Kontainers, each is assigned `@Tag` on a test suite:
+unit tests, Docker integration tests, and Kubernetes integration tests.
+Unit tests, `@Tag("unit")`, can run without a Docker or Kubernetes being available. Docker
+integration tests, `@Tag("docker")`, require the Docker daemon to be running in the test
+environment. Kubernetes integration tests, `@Tag("kubernetes")`, must be run in a K8S pod
+or have K8S infrastructure, such as https://minikube.sigs.k8s.io/docs/start/[minikube],
+available for testing.
+
+==== Docker Integration Tests
+
+Docker integration tests have been verified to work on Linux & macOS, Windows is not
+currently supported.
+
+Linux requires a running Docker daemon and current user is a member of the
+`docker` group. Validated on Ubuntu 20.04.
+
+macOS requires Docker Desktop to be installed and running.
+
+==== Kubernetes Integration Tests
+
+Kubernetes integration tests have been verified to work on Linux with minikube,
+but should work on macOS.
+
+Testing with minikube requires minikube's IP address to be exported to the
+environment. You can do this by running: `export MINIKUBE_IP=$(minikube ip)`
+
+TIP: If you exported `MINIKUBE_IP` and tests fail to start, restart the
+Gradle daemon with either `./gradlew --stop` or `pkill -f GradleDaemon`

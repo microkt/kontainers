@@ -1,0 +1,13 @@
+[*]
+end_of_line = lf
+indent_style = space
+indent_size = 4
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.{kt,kts}]
+charset = utf-8
+wildcard_import_limit = 100
+
+[*.{yml,yaml}]
+indent_size = 2

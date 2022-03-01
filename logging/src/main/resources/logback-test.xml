@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%date [%level] [%thread] %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <root level="INFO">
+        <appender-ref ref="stdout" />
+    </root>
+    <logger name="io.microkt.kontainers" level="DEBUG" />
+    <logger name="io.mockk" level="WARN" />
+    <logger name="com.github.dockerjava.zerodep" level="WARN" />
+    <logger name="com.zaxxer.hikari" level="INFO" />
+</configuration>
