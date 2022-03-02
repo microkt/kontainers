@@ -35,8 +35,6 @@ jobs:
 
       - name: Build & Check
         run: |
-          env
-          trap "" SIGQUIT
           ./gradlew --no-daemon --continue check
 
       - name: Upload Test Results
@@ -104,8 +102,6 @@ jobs:
 
       - name: Kubernetes Integration Test
         run: |
-          env
-          trap "" SIGQUIT
           ./gradlew --no-daemon kubernetesIntegrationTest
 
       - name: Upload Test Results
@@ -149,36 +145,3 @@ jobs:
         uses: EnricoMi/publish-unit-test-result-action/composite@v1
         with:
           files: "**/test-results/**/*.xml"
-
-  publish:
-    name: Publish
-    if: github.event_name != 'pull_request'
-    needs: report
-    runs-on:
-      - self-hosted
-      - kubernetes
-      - build
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up JDK
-        uses: actions/setup-java@v1
-        with:
-          java-version: 11
-
-      - name: Gradle Cache
-        id: cache-gradle-files
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-
-      - name: Publish
-        env:
-          ARTIFACTORY_DEPLOY: ${{ secrets.ARTIFACTORY_DEPLOY_KEY }}
-        run: |
-          trap "" SIGQUIT
-          ./gradlew -x test publish
