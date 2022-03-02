@@ -81,7 +81,9 @@ jobs:
 
   kubernetes:
     name: Kubernetes Cluster Integration Tests
-    runs-on: [self-hosted, kubernetes, build]
+    runs-on:
+      - self-hosted
+      - Linux
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK

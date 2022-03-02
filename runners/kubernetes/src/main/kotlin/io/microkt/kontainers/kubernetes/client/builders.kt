@@ -12,6 +12,7 @@ import io.kubernetes.client.openapi.models.V1ServiceBuilder
 import io.kubernetes.client.openapi.models.V1ServicePortBuilder
 import io.microkt.kontainers.domain.KontainerSpec
 
+// FIXME: need to make memory and CPU configurable
 fun createPodSpec(spec: KontainerSpec, uniqueName: String): V1Pod =
     V1PodBuilder()
         .withNewMetadata()
@@ -37,14 +38,14 @@ fun createPodSpec(spec: KontainerSpec, uniqueName: String): V1Pod =
             V1ResourceRequirements()
                 .limits(
                     mapOf(
-                        "cpu" to Quantity.fromString("1"),
-                        "memory" to Quantity.fromString("1Gi")
+                        "cpu" to Quantity.fromString("0.4"),
+                        "memory" to Quantity.fromString("128Mi")
                     )
                 )
                 .requests(
                     mapOf(
-                        "cpu" to Quantity.fromString("1"),
-                        "memory" to Quantity.fromString("1Gi")
+                        "cpu" to Quantity.fromString("0.4"),
+                        "memory" to Quantity.fromString("128Mi")
                     )
                 )
         )
