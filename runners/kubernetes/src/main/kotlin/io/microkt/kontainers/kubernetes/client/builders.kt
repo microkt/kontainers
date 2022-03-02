@@ -39,13 +39,13 @@ fun createPodSpec(spec: KontainerSpec, uniqueName: String): V1Pod =
                 .limits(
                     mapOf(
                         "cpu" to Quantity.fromString("0.4"),
-                        "memory" to Quantity.fromString("128Mi")
+                        "memory" to Quantity.fromString("400Mi")
                     )
                 )
                 .requests(
                     mapOf(
                         "cpu" to Quantity.fromString("0.4"),
-                        "memory" to Quantity.fromString("128Mi")
+                        "memory" to Quantity.fromString("400Mi")
                     )
                 )
         )
