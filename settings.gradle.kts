@@ -19,6 +19,7 @@ include("logging")
 include("kontainers-junit5")
 
 include("kontainers-kafka")
+include("kontainers-mongodb")
 include("kontainers-mysql")
 include("kontainers-postgresql")
 include("kontainers-redis")
@@ -29,6 +30,7 @@ project(":kontainers-runner-kubernetes").projectDir = File(rootProject.projectDi
 project(":kontainers-runner-factory").projectDir = File(rootProject.projectDir, "./runners/runner-factory")
 
 project(":kontainers-kafka").projectDir = File(rootProject.projectDir, "./kontainers/kafka")
+project(":kontainers-mongodb").projectDir = File(rootProject.projectDir, "./kontainers/mongodb")
 project(":kontainers-mysql").projectDir = File(rootProject.projectDir, "./kontainers/mysql")
 project(":kontainers-postgresql").projectDir = File(rootProject.projectDir, "./kontainers/postgresql")
 project(":kontainers-redis").projectDir = File(rootProject.projectDir, "./kontainers/redis")
