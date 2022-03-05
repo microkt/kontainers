@@ -7,5 +7,5 @@ dependencies {
     api(project(":kontainers-runner-factory"))
 
     // Redis Driver
-    testImplementation("io.lettuce:lettuce-core:6.1.4.RELEASE")
+    testImplementation("io.lettuce:lettuce-core:6.1.6.RELEASE")
 }

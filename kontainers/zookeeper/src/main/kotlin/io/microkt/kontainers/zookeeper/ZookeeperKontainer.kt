@@ -9,7 +9,7 @@ class ZookeeperKontainer(
     parent: Kontainer
 ) : GenericTcpKontainer(kontainerSpec, parent) {
     companion object Defaults {
-        const val ZOOKEEPER_IMAGE = "bitnami/zookeeper"
+        const val ZOOKEEPER_IMAGE = "zookeeper"
         const val ZOOKEEPER_VERSION = "3.6.3"
         const val PORT: Int = 2181
     }
