@@ -26,7 +26,7 @@ class MysqlKontainer(
         const val DATABASE_NAME = "test"
         const val USERNAME = "test"
         const val PASSWORD = "test"
-        const val VERSION = "8.0"
+        const val VERSION = "8.0-oracle"
     }
 
     object Env {
