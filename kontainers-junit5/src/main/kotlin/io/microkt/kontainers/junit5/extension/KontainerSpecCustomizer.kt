@@ -3,6 +3,13 @@ package io.microkt.kontainers.junit5.extension
 import io.microkt.kontainers.domain.KontainerSpec
 import io.microkt.kontainers.junit5.annotation.KontainerSpecOverride
 
+/**
+ * Applies customizations to a [KontainerSpec] created with [KontainerSpecOverride]
+ * annotations.
+ *
+ * @author Scott Rossillo
+ * @see KontainerSpecOverride
+ */
 class KontainerSpecCustomizer(private val kontainerSpec: KontainerSpec) {
     fun customize(kontainerSpecOverride: KontainerSpecOverride): KontainerSpec =
         kontainerSpec.copy(
