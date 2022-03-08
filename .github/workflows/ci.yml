@@ -121,6 +121,14 @@ jobs:
       - docker
       - kubernetes
     steps:
+      - name: Pull Check Action
+        uses: actions/checkout@v2
+        with:
+          repository: microkt/code-check-report-action
+          path: check-action
+          ssh-key: ${{ secrets.ACTIONS_READ_KEY }}
+          ref: v0.1.0
+
       - name: Download Unit Tests
         uses: actions/download-artifact@v2
         with:
@@ -141,7 +149,8 @@ jobs:
           ls -la
           find
 
-      - name: Publish Test Results
-        uses: EnricoMi/publish-unit-test-result-action/composite@v1
+      - name: Publish Checks
+        if: github.event_name == 'pull_request' && always()
+        uses: ./check-action
         with:
-          files: "**/test-results/**/*.xml"
+          token: ${{ github.token }}
