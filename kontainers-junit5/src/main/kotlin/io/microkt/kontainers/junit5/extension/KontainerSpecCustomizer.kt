@@ -11,6 +11,16 @@ import io.microkt.kontainers.junit5.annotation.KontainerSpecOverride
  * @see KontainerSpecOverride
  */
 class KontainerSpecCustomizer(private val kontainerSpec: KontainerSpec) {
+    /**
+     * Applies overrides from the given [kontainerSpecOverride] to the
+     * [io.microkt.kontainers.domain.Kontainer] annotated with the given
+     * [KontainerSpecOverride].
+     *
+     * Image overrides must include the image version or `latest` is assumed.
+     *
+     * Environment overrides are merged with the [kontainerSpec]'s existing
+     * [KontainerSpec.environment].
+     */
     fun customize(kontainerSpecOverride: KontainerSpecOverride): KontainerSpec =
         kontainerSpec.copy(
             image = kontainerSpecOverride.image.ifBlank { kontainerSpec.image },

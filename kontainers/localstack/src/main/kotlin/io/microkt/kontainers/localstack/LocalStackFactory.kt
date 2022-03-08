@@ -6,6 +6,12 @@ import io.microkt.kontainers.domain.KontainerSpec
 import io.microkt.kontainers.runner.AbstractKontainerFactory
 import kotlin.reflect.KClass
 
+/**
+ * [KontainerFactory] for [LocalStackKontainer]s.
+ *
+ * @author Scott Rossillo
+ * @see KontainerFactory
+ */
 class LocalStackFactory : AbstractKontainerFactory<LocalStackKontainer>(), KontainerFactory<LocalStackKontainer> {
     override val kontainerSpec: KontainerSpec
         get() = localStackKontainerSpec
