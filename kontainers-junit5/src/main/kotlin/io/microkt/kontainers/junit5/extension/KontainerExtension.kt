@@ -50,9 +50,7 @@ open class KontainerExtension : AfterAllCallback, ParameterResolver {
 
     private fun customize(kontainerSpec: KontainerSpec, override: KontainerSpecOverride): KontainerSpec {
         log.info { "applying container spec overrides: $override" }
-        return kontainerSpec(kontainerSpec) {
-            image = override.image
-        }
+        return KontainerSpecCustomizer(kontainerSpec).customize(override)
     }
 
     private fun resolveKontainer(parameterContext: ParameterContext): Kontainer {
