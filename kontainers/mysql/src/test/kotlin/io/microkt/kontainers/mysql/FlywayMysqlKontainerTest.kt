@@ -2,7 +2,6 @@ package io.microkt.kontainers.mysql
 
 import io.microkt.kontainers.junit5.annotation.Kontainers
 import org.flywaydb.core.Flyway
-import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.Tags

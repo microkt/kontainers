@@ -1,8 +1,8 @@
 package io.microkt.kontainers.mysql
 
 import io.microkt.kontainers.junit5.annotation.Kontainers
-import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.Tags
 import org.junit.jupiter.api.Test
@@ -31,6 +31,6 @@ internal class MysqlKontainerTest(private val mysql: MysqlKontainer) {
 
     @Test
     fun testValidPort() {
-        Assertions.assertNotNull(mysql.getPort(mysqlKontainerSpec.ports.first().port))
+        assertNotNull(mysql.getPort(mysqlKontainerSpec.ports.first().port))
     }
 }
