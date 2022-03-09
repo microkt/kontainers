@@ -12,3 +12,11 @@ dependencies {
 
     api("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$kotlinxVersion")
 }
+tasks.withType<org.jetbrains.dokka.gradle.DokkaTaskPartial>().configureEach {
+    dokkaSourceSets {
+        named("main") {
+            moduleName.set("Docker Kontainer Runner")
+//            includes.from("MODULES.md")
+        }
+    }
+}

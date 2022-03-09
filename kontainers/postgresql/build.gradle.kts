@@ -10,3 +10,12 @@ dependencies {
     testImplementation("org.postgresql:postgresql:42.2.23")
     testImplementation("com.zaxxer:HikariCP:4.0.3")
 }
+
+tasks.withType<org.jetbrains.dokka.gradle.DokkaTaskPartial>().configureEach {
+    dokkaSourceSets {
+        named("main") {
+            moduleName.set("PostgreSQL Kontainer")
+//            includes.from("MODULES.md")
+        }
+    }
+}

@@ -2,13 +2,14 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm")
+    id("org.jetbrains.dokka")
     id("maven-publish")
     id("org.jlleitschuh.gradle.ktlint")
 }
 
 allprojects {
     group = "io.mircokt.kontainers"
-    version = "0.1.1"
+    version = "1.0.0-alpha1"
     repositories {
         mavenCentral()
     }
@@ -19,6 +20,7 @@ subprojects {
         plugin("java")
         plugin("maven-publish")
         plugin("org.jlleitschuh.gradle.ktlint")
+        plugin("org.jetbrains.dokka")
     }
 
     val kotlinVersion: String by project
@@ -97,4 +99,9 @@ subprojects {
             }
         }
     }
+}
+
+tasks.dokkaHtmlMultiModule.configure {
+    moduleName.set("Kontainers")
+    moduleVersion.set(project.version.toString())
 }

@@ -5,6 +5,12 @@ import io.microkt.kontainers.domain.JdbcKontainer
 import io.microkt.kontainers.domain.Kontainer
 import io.microkt.kontainers.domain.KontainerSpec
 
+/**
+ * Provides a [Kontainer] for [MySQL](https://www.mysql.com/).
+ *
+ * @author Scott Rossillo
+ * @sample [io.microkt.kontainers.mysql.MysqlKontainerTest]
+ */
 class MysqlKontainer(
     override val kontainerSpec: KontainerSpec,
     private val parentHandle: Kontainer

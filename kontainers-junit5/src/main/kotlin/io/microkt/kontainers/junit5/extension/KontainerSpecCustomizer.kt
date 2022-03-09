@@ -10,7 +10,7 @@ import io.microkt.kontainers.junit5.annotation.KontainerSpecOverride
  * @author Scott Rossillo
  * @see KontainerSpecOverride
  */
-class KontainerSpecCustomizer(private val kontainerSpec: KontainerSpec) {
+internal class KontainerSpecCustomizer(private val kontainerSpec: KontainerSpec) {
     /**
      * Applies overrides from the given [kontainerSpecOverride] to the
      * [io.microkt.kontainers.domain.Kontainer] annotated with the given

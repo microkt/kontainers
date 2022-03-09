@@ -17,7 +17,7 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
-class DockerExternalApiClient(private val client: DockerClient) : DockerFacade {
+internal class DockerExternalApiClient(private val client: DockerClient) : DockerFacade {
     private val log = KotlinLogging.logger {}
 
     override suspend fun create(kontainerSpec: KontainerSpec): CreateContainerResponse {
