@@ -18,14 +18,6 @@ tasks.withType<org.jetbrains.dokka.gradle.DokkaTaskPartial>().configureEach {
             moduleName.set("Kontainers JUnit 5")
             includes.from("MODULES.md")
 
-            sourceLink {
-                localDirectory.set(file("src/main/kotlin"))
-                remoteUrl.set(
-                    uri("https://github.com/MicroKt/kontainers").toURL()
-                )
-                remoteLineSuffix.set("#L")
-            }
-
             samples.from(
                 "$projectDir/src/test/kotlin"
             )
