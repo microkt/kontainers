@@ -104,4 +104,5 @@ subprojects {
 tasks.dokkaHtmlMultiModule.configure {
     moduleName.set("Kontainers")
     moduleVersion.set(project.version.toString())
+    includes.from("MODULES.md")
 }
