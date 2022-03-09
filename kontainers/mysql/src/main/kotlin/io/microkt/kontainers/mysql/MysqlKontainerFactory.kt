@@ -6,6 +6,11 @@ import io.microkt.kontainers.domain.KontainerSpec
 import io.microkt.kontainers.runner.AbstractKontainerFactory
 import kotlin.reflect.KClass
 
+/**
+ * Provides a [KontainerFactory] for [MysqlKontainer]s.
+ *
+ * @author Scott Rossillo
+ */
 class MysqlKontainerFactory : AbstractKontainerFactory<MysqlKontainer>(), KontainerFactory<MysqlKontainer> {
     override val kontainerSpec: KontainerSpec
         get() = mysqlKontainerSpec
@@ -13,7 +18,7 @@ class MysqlKontainerFactory : AbstractKontainerFactory<MysqlKontainer>(), Kontai
     override fun createKontainer(kontainerSpec: KontainerSpec): MysqlKontainer {
         return MysqlKontainer(
             kontainerSpec = kontainerSpec,
-            parentHandle = runner.createSync(kontainerSpec)
+            parentKontainer = runner.createSync(kontainerSpec)
         )
     }
 

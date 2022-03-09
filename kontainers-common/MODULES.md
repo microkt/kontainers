@@ -1,6 +1,11 @@
 # Module Kontainers Common
 
-Fix me soon
+Defines the Kontainers domain, DSL, and specifications for platforms capable
+of running Kontainer instances.
+
+# Package io.microkt.kontainers.config
+
+Provides configuration necessary to bootstrap a Kontainer runner.
 
 # Package io.microkt.kontainers.domain
 
@@ -11,17 +16,19 @@ Kontainers domain specification.
 Provides a Kotlin domain specific language for building Kontainer specifications.
 
 ```kotlin
-val mysqlKontainerSpec = kontainerSpec {
-    name = MysqlKontainer.Default.IMAGE
-    image = "${this.name}:${MysqlKontainer.Default.VERSION}"
+val myKontainerSpec = kontainerSpec {
+    name = "foo"
+    image = "foo:version"
     environment {
-        set(MYSQL_DATABASE to MysqlKontainer.Default.DATABASE_NAME)
-        set(MYSQL_ROOT_PASSWORD to MysqlKontainer.Default.USERNAME)
-        set(MYSQL_USER to MysqlKontainer.Default.USERNAME)
-        set(MYSQL_PASSWORD to MysqlKontainer.Default.PASSWORD)
+        set("FOO" to "bar")
     }
     ports {
-        expose tcp MysqlKontainer.Default.PORT
+        expose tcp 8080
     }
 }
 ```
+
+# Package io.microkt.kontainers.runner
+
+Provides an interface to be implemented by any platform capable of running
+Kontainers.

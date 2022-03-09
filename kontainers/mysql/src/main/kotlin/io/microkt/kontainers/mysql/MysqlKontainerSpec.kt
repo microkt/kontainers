@@ -6,16 +6,22 @@ import io.microkt.kontainers.mysql.MysqlKontainer.Env.MYSQL_PASSWORD
 import io.microkt.kontainers.mysql.MysqlKontainer.Env.MYSQL_ROOT_PASSWORD
 import io.microkt.kontainers.mysql.MysqlKontainer.Env.MYSQL_USER
 
+/**
+ * Default MySQL [KontainerSpec][io.microkt.kontainers.domain.KontainerSpec].
+ *
+ * @author Scott Rossillo
+ * @sample io.microkt.kontainers.mysql.mysqlKontainerSpec
+ */
 val mysqlKontainerSpec = kontainerSpec {
-    name = MysqlKontainer.Default.IMAGE
-    image = "${this.name}:${MysqlKontainer.Default.VERSION}"
+    name = "mysql"
+    image = "mysql:8.0-oracle"
     environment {
-        set(MYSQL_DATABASE to MysqlKontainer.Default.DATABASE_NAME)
-        set(MYSQL_ROOT_PASSWORD to MysqlKontainer.Default.USERNAME)
-        set(MYSQL_USER to MysqlKontainer.Default.USERNAME)
-        set(MYSQL_PASSWORD to MysqlKontainer.Default.PASSWORD)
+        set(MYSQL_DATABASE to "test")
+        set(MYSQL_ROOT_PASSWORD to "test")
+        set(MYSQL_USER to "test")
+        set(MYSQL_PASSWORD to "test")
     }
     ports {
-        expose tcp MysqlKontainer.Default.PORT
+        expose tcp 3306
     }
 }
