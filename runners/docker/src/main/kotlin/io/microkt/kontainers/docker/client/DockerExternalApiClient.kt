@@ -17,6 +17,11 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
+/**
+ * Provides a [DockerFacade] implementation based on [DockerClient].
+ *
+ * @author Scott Rossillo
+ */
 internal class DockerExternalApiClient(private val client: DockerClient) : DockerFacade {
     private val log = KotlinLogging.logger {}
 
