@@ -5,7 +5,6 @@ import io.lettuce.core.RedisURI
 import io.microkt.kontainers.junit5.annotation.KontainerSpecOverride
 import io.microkt.kontainers.junit5.annotation.Kontainers
 import io.microkt.kontainers.redis.RedisKontainer
-import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.Tags
