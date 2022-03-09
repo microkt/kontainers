@@ -7,7 +7,9 @@ import io.microkt.kontainers.runner.AbstractKontainerFactory
 import kotlin.reflect.KClass
 
 /**
- * Provides a [MongoKontainer] [KontainerFactory].
+ * Provides a [MongoKontainer][KontainerFactory].
+ *
+ * @author Scott Rossillo
  */
 class MongoKontainerFactory : AbstractKontainerFactory<MongoKontainer>(), KontainerFactory<MongoKontainer> {
     override val kontainerSpec: KontainerSpec
@@ -16,7 +18,7 @@ class MongoKontainerFactory : AbstractKontainerFactory<MongoKontainer>(), Kontai
     override fun createKontainer(kontainerSpec: KontainerSpec): MongoKontainer {
         return MongoKontainer(
             kontainerSpec = kontainerSpec,
-            parentHandle = runner.createSync(kontainerSpec)
+            parent = runner.createSync(kontainerSpec)
         )
     }
 
