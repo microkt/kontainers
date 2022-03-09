@@ -18,15 +18,6 @@ tasks.withType<org.jetbrains.dokka.gradle.DokkaTaskPartial>().configureEach {
         named("main") {
             moduleName.set("MySQL Kontainer")
             includes.from("MODULES.md")
-
-            sourceLink {
-                localDirectory.set(file("src/main/kotlin"))
-                remoteUrl.set(
-                    uri("https://github.com/MicroKt/kontainers").toURL()
-                )
-                remoteLineSuffix.set("#L")
-            }
-
             samples.from(
                 "$projectDir/src/main/kotlin",
                 "$projectDir/src/test/kotlin"
