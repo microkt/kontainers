@@ -9,6 +9,8 @@ import io.microkt.kontainers.runner.KontainerRunner
 /**
  * Provides a Kubernetes parent container for kontainers launched
  * from within a Kubernetes cluster.
+ *
+ * @author Scott Rossillo
  */
 class ClusterKubernetesKontainer(
     kontainerSpec: KontainerSpec,

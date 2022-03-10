@@ -13,6 +13,13 @@ import io.microkt.kontainers.kubernetes.domain.ExternalKubernetesKontainer
 import io.microkt.kontainers.kubernetes.domain.KubernetesKontainer
 import io.microkt.kontainers.runner.KontainerRunner
 
+/**
+ * Kubernetes [KontainerRunner] implementation.
+ *
+ * @author Scott Rossillo
+ * @constructor Creates a new [KubernetesKontainerRunner] using the given
+ * [kubernetesClient] to communicate with the K8S controller.
+ */
 class KubernetesKontainerRunner(
     private val kubernetesClient: KubernetesClient = CheckedKubernetesApiClient.create()
 ) : KontainerRunner {
