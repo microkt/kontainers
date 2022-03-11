@@ -12,7 +12,7 @@ tasks.withType<org.jetbrains.dokka.gradle.DokkaTaskPartial>().configureEach {
     dokkaSourceSets {
         named("main") {
             moduleName.set("Kontainers Factory")
-//            includes.from("MODULES.md")
+            includes.from("MODULES.md")
         }
     }
 }
