@@ -30,7 +30,11 @@ to define a request to run a container or Docker and K8S. The specification is t
 used by a Kontainer factory to start the container on either Docker or Kubernetes,
 depending on the capabilities of the platform on which your code is run.
 
-image::arch.png[align="center"]
+[source,mermaid]
+  flowchart LR;
+    S1([Redis Kontainer Spec]) & S2([MySQL Kontainer Spec]) & S3([PostgreSQL Kontainer Spec]) & S4([Any Kontainer Spec]) -- into --> Factory([Kontainer Factory])
+    Factory -. uses .-> DR(Docker Kontainer Runner) & KR(Kubernetes Kontainer Runner) & X(Future Kontainer Runner)
+    Factory == creates ==> RK([Redis Kontainer]) & MK([MySQL Kontainer]) & PK([PostgreSQL Kontainer]) & AK([Any Kontainer])
 
 == Using Kontainers
 
