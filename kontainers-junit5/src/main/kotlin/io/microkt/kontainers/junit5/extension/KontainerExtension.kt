@@ -16,10 +16,22 @@ import org.junit.jupiter.api.extension.ParameterContext
 import org.junit.jupiter.api.extension.ParameterResolver
 import kotlin.reflect.KClass
 
+/**
+ * Provides a [JUnit Jupiter extension](https://junit.org/junit5/docs/current/user-guide/#extensions)
+ * to simplify using [Kontainer]s in JUnit 5 test suites.
+ *
+ * @author Scott Rossillo
+ * @sample io.microkt.kontainers.junit5.KontainerExtensionTest
+ * @see io.microkt.kontainers.junit5.annotation.Kontainers
+ * @see io.microkt.kontainers.junit5.annotation.KontainerSpecOverride
+ */
 open class KontainerExtension : AfterAllCallback, ParameterResolver {
     private val log = KotlinLogging.logger { }
     private val kontainers: MutableMap<Int, Kontainer> = mutableMapOf()
 
+    /**
+     * Removes all [Kontainer]s started by this extension.
+     */
     override fun afterAll(context: ExtensionContext?) {
         runBlocking(Dispatchers.IO) {
             kontainers.values.map { async { it.remove() } }.awaitAll()
@@ -48,6 +60,9 @@ open class KontainerExtension : AfterAllCallback, ParameterResolver {
             else -> resolveKontainer(parameterContext)
         }
 
+    /**
+     * Applies @[KontainerSpecOverride]s to the [Kontainer]'s default [kontainerSpec].
+     */
     private fun customize(kontainerSpec: KontainerSpec, override: KontainerSpecOverride): KontainerSpec {
         log.info { "applying container spec overrides: $override" }
         return KontainerSpecCustomizer(kontainerSpec).customize(override)

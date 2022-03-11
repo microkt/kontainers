@@ -3,12 +3,15 @@ package io.microkt.kontainers.postgresql
 import io.microkt.kontainers.domain.Kontainer
 import io.microkt.kontainers.domain.KontainerFactory
 import io.microkt.kontainers.domain.KontainerSpec
-import io.microkt.kontainers.runner.KontainerRunner
-import io.microkt.kontainers.runner.KontainerRunnerFactory
+import io.microkt.kontainers.runner.AbstractKontainerFactory
 import kotlin.reflect.KClass
 
-class PostgresKontainerFactory : KontainerFactory<PostgresKontainer> {
-    private val runner: KontainerRunner by lazy { KontainerRunnerFactory.createRunner() }
+/**
+ * Provides a Postgres [KontainerFactory].
+ *
+ * @author Scott Rossillo
+ */
+class PostgresKontainerFactory : AbstractKontainerFactory<PostgresKontainer>(), KontainerFactory<PostgresKontainer> {
 
     override val kontainerSpec: KontainerSpec
         get() = postgresKontainerSpec
@@ -16,17 +19,7 @@ class PostgresKontainerFactory : KontainerFactory<PostgresKontainer> {
     override fun createKontainer(kontainerSpec: KontainerSpec): PostgresKontainer {
         return PostgresKontainer(
             kontainerSpec = kontainerSpec,
-            parentHandle = runner.createSync(kontainerSpec)
-        )
-    }
-
-    override fun createKontainer(): PostgresKontainer = createKontainer(kontainerSpec)
-
-    fun createKontainer(kontainerSpec: KontainerSpec, runner: KontainerRunner): PostgresKontainer {
-        val handle = runner.createSync(kontainerSpec)
-        return PostgresKontainer(
-            kontainerSpec = kontainerSpec,
-            parentHandle = handle
+            parentKontainer = runner.createSync(kontainerSpec)
         )
     }
 

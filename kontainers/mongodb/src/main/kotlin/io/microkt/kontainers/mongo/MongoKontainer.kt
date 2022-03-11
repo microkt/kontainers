@@ -6,20 +6,18 @@ import io.microkt.kontainers.domain.KontainerSpec
 
 /**
  * Provides a MongoDB [Kontainer].
+ *
+ * @author Scott Rossillo
+ * @constructor Creates a new [MongoKontainer] with the given [kontainerSpec].
+ * @sample io.microkt.kontainers.mongo.MongoKontainerTest
  */
 class MongoKontainer(
     override val kontainerSpec: KontainerSpec,
-    parentHandle: Kontainer
-) : GenericTcpKontainer(kontainerSpec, parentHandle) {
-
-    object Default {
-        const val IMAGE = "mongo"
-        const val PORT = 27017
-        const val USERNAME = "test"
-        const val PASSWORD = "test"
-        const val VERSION = "5.0.6"
-    }
-
+    parent: Kontainer
+) : GenericTcpKontainer(kontainerSpec, parent) {
+    /**
+     * MongoDB environment variables.
+     */
     object Env {
         const val MONGO_INITDB_ROOT_USERNAME = "MONGO_INITDB_ROOT_USERNAME"
         const val MONGO_INITDB_ROOT_PASSWORD = "MONGO_INITDB_ROOT_PASSWORD"

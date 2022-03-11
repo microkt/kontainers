@@ -3,12 +3,25 @@ package io.microkt.kontainers.dsl
 import io.microkt.kontainers.domain.KontainerPort
 import io.microkt.kontainers.domain.KontainerSpec
 
+/**
+ * Functional interface for defining [KontainerSpec]s.
+ *
+ * @author Scott Rossillo
+ */
 fun kontainerSpec(block: KontainerSpecBuilder.() -> Unit): KontainerSpec =
     KontainerSpecBuilder().apply(block).build()
 
+/**
+ * Functional interface for defining [KontainerSpec]s building on the given [baseSpec].
+ *
+ * @author Scott Rossillo
+ */
 fun kontainerSpec(baseSpec: KontainerSpec, block: KontainerSpecBuilder.() -> Unit): KontainerSpec =
     KontainerSpecBuilder(baseSpec).apply(block).build()
 
+/**
+ * Kontainer environment DSL builder.
+ */
 @KontainerDsl
 class KontainerEnvironmentBuilder {
     private val env: MutableMap<String, String> = mutableMapOf()
@@ -20,6 +33,9 @@ class KontainerEnvironmentBuilder {
     fun build(): Map<String, String> = env
 }
 
+/**
+ * Kontainer port DSL builder.
+ */
 @KontainerDsl
 class KontainerPortBuilder {
     val expose = this
@@ -36,8 +52,19 @@ class KontainerPortBuilder {
     fun build(): List<KontainerPort> = ports
 }
 
+/**
+ * Kontainer DSL [KontainerSpec] builder.
+ *
+ * @author Scott Rossillo
+ * @constructor Creates a new [KontainerSpec].
+ */
 @KontainerDsl
 class KontainerSpecBuilder() {
+    /**
+     * Creates a customizable [KontainerSpec] based on the given base [KontainerSpec].
+     *
+     * @param baseSpec the [KontainerSpec] on which this spec builds
+     */
     constructor(baseSpec: KontainerSpec) : this() {
         name = baseSpec.name
         image = baseSpec.image

@@ -8,7 +8,9 @@ import io.microkt.kontainers.runner.KontainerRunner
 
 /**
  * Provides a Kubernetes parent container for kontainers launched
- * from outside a Kubernetes cluster, such as onto minikube.
+ * from outside a Kubernetes cluster, such as onto Minikube.
+ *
+ * @author Scott Rossillo
  */
 class ExternalKubernetesKontainer(
     kontainerSpec: KontainerSpec,

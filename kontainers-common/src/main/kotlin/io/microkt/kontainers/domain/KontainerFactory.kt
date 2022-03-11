@@ -4,6 +4,8 @@ import kotlin.reflect.KClass
 
 /**
  * Factory for creating [Kontainer]s of type [T].
+ *
+ * @author Scott Rossillo
  */
 interface KontainerFactory<T : Kontainer> {
     val kontainerSpec: KontainerSpec

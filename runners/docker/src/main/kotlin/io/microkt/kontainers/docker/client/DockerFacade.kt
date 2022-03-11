@@ -5,6 +5,11 @@ import com.github.dockerjava.api.command.InspectContainerResponse
 import com.github.dockerjava.api.model.PullResponseItem
 import io.microkt.kontainers.domain.KontainerSpec
 
+/**
+ * Provides an interface for a Kontainer factory to interact with Docker.
+ *
+ * @author Scott Rossillo
+ */
 interface DockerFacade {
     suspend fun create(kontainerSpec: KontainerSpec): CreateContainerResponse
     suspend fun delete(containerId: String)

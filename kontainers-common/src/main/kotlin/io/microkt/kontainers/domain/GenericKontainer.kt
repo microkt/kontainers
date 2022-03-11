@@ -1,5 +1,12 @@
 package io.microkt.kontainers.domain
 
+/**
+ * Provides an abstract [Kontainer] implementation to handle common
+ * Kontainer actions. Delegates to a platform specific [parent] Kontainer
+ * to run the given [kontainerSpec].
+ *
+ * @author Scott Rossillo
+ */
 abstract class GenericKontainer(
     override val kontainerSpec: KontainerSpec,
     private val parent: Kontainer
@@ -12,6 +19,9 @@ abstract class GenericKontainer(
         waitForReady(timeout)
     }
 
+    /**
+     * Blocks until this [Kontainer] is ready to accept requests.
+     */
     abstract fun waitForReady(timeout: Long)
 
     override suspend fun remove() = parent.remove()

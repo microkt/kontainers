@@ -5,6 +5,12 @@ import io.kubernetes.client.openapi.models.V1Service
 import io.microkt.kontainers.domain.KontainerSpec
 import io.microkt.kontainers.runner.KontainerRunner
 
+/**
+ * Provides an abstract [KubernetesKontainer] for methods common to all
+ * Kubernetes hosted [Kontainers][io.microkt.kontainers.domain.Kontainer].
+ *
+ * @author Scott Rossillo
+ */
 abstract class AbstractKubernetesKontainer(
     override val kontainerSpec: KontainerSpec,
     private val pod: V1Pod,

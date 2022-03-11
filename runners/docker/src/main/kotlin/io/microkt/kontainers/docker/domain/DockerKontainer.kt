@@ -7,6 +7,11 @@ import io.microkt.kontainers.domain.Kontainer
 import io.microkt.kontainers.domain.KontainerSpec
 import mu.KotlinLogging
 
+/**
+ * Provides a Docker based [Kontainer] implementation.
+ *
+ * @author Scott Rossillo
+ */
 class DockerKontainer(
     override val kontainerSpec: KontainerSpec,
     override val id: String,

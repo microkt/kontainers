@@ -3,12 +3,15 @@ package io.microkt.kontainers.zookeeper
 import io.microkt.kontainers.domain.Kontainer
 import io.microkt.kontainers.domain.KontainerFactory
 import io.microkt.kontainers.domain.KontainerSpec
-import io.microkt.kontainers.runner.KontainerRunner
-import io.microkt.kontainers.runner.KontainerRunnerFactory
+import io.microkt.kontainers.runner.AbstractKontainerFactory
 import kotlin.reflect.KClass
 
-class ZookeeperKontainerFactory : KontainerFactory<ZookeeperKontainer> {
-    private val runner: KontainerRunner by lazy { KontainerRunnerFactory.createRunner() }
+/**
+ * Provides a [KontainerFactory] for [ZookeeperKontainer]s.
+ *
+ * @author Scott Rossillo
+ */
+class ZookeeperKontainerFactory : AbstractKontainerFactory<ZookeeperKontainer>(), KontainerFactory<ZookeeperKontainer> {
     override val kontainerSpec: KontainerSpec
         get() = zookeeperKontainerSpec
 
@@ -17,8 +20,6 @@ class ZookeeperKontainerFactory : KontainerFactory<ZookeeperKontainer> {
             kontainerSpec = kontainerSpec,
             parent = runner.createSync(kontainerSpec)
         )
-
-    override fun createKontainer(): ZookeeperKontainer = createKontainer(kontainerSpec)
 
     override fun supports(kontainerKClass: KClass<Kontainer>): Boolean =
         kontainerKClass == ZookeeperKontainer::class

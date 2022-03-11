@@ -4,6 +4,8 @@ import com.mongodb.MongoClientSettings
 import com.mongodb.MongoCredential
 import com.mongodb.ServerAddress
 import io.microkt.kontainers.junit5.annotation.Kontainers
+import io.microkt.kontainers.mongo.MongoKontainer.Env.MONGO_INITDB_ROOT_PASSWORD
+import io.microkt.kontainers.mongo.MongoKontainer.Env.MONGO_INITDB_ROOT_USERNAME
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.Tags
@@ -23,9 +25,9 @@ internal class MongoKontainerTest(private val mongo: MongoKontainer) {
     private val settings = MongoClientSettings.builder()
         .credential(
             MongoCredential.createCredential(
-                MongoKontainer.Default.USERNAME,
+                mongo.kontainerSpec.environment[MONGO_INITDB_ROOT_USERNAME]!!,
                 "admin",
-                MongoKontainer.Default.PASSWORD.toCharArray()
+                mongo.kontainerSpec.environment[MONGO_INITDB_ROOT_PASSWORD]!!.toCharArray()
             )
         )
         .applyToClusterSettings {

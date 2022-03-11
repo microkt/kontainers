@@ -6,7 +6,6 @@ import io.microkt.kontainers.domain.KontainerFactory
 import io.microkt.kontainers.domain.KontainerSpec
 import io.microkt.kontainers.runner.KontainerRunner
 import io.microkt.kontainers.runner.KontainerRunnerFactory
-import io.microkt.kontainers.zookeeper.ZookeeperKontainer
 import io.microkt.kontainers.zookeeper.zookeeperKontainerSpec
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -37,7 +36,7 @@ class KafkaKontainerFactory : KontainerFactory<KafkaKontainer> {
 
         // we know there's only one
         val zkKontainer = dependencies.first()
-        val zkAddress = "${zkKontainer.getDirectAddress()}:${ZookeeperKontainer.PORT}"
+        val zkAddress = "${zkKontainer.getDirectAddress()}:${zkKontainer.kontainerSpec.ports.first().port}"
 
         val customKafkaSpec = kontainerSpec.copy(
             environment = mutableMapOf("KAFKA_CFG_ZOOKEEPER_CONNECT" to zkAddress)

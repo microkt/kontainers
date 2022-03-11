@@ -8,8 +8,14 @@ import io.microkt.kontainers.domain.KontainerSpec
 import io.microkt.kontainers.runner.KontainerRunner
 import mu.KotlinLogging
 
-class DockerKontainerRunner(private val dockerFacade: DockerFacade = DockerExternalApiClient.create()) :
-    KontainerRunner {
+/**
+ * Docker [KontainerRunner] implementation.
+ *
+ * @author Scott Rossillo
+ */
+class DockerKontainerRunner(
+    private val dockerFacade: DockerFacade = DockerExternalApiClient.create()
+) : KontainerRunner {
     private val log = KotlinLogging.logger { }
 
     override suspend fun create(kontainerSpec: KontainerSpec): Kontainer {
