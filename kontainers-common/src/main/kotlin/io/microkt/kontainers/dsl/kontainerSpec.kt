@@ -26,7 +26,6 @@ fun kontainerSpec(baseSpec: KontainerSpec, block: KontainerSpecBuilder.() -> Uni
  */
 @KontainerDsl
 class KontainerEnvironmentBuilder {
-    val x =  this
     private val env: MutableMap<String, String> = mutableMapOf()
 
     infix fun set(kv: Pair<String, String>) {
@@ -55,18 +54,21 @@ class KontainerPortBuilder {
     fun build(): List<KontainerPort> = ports
 }
 
+/**
+ * [KontainerSpec] [KontainerSpecResources] builder.
+ */
 @KontainerDsl
 class KontainerSpecResourceBuilder {
     val limit = this
-    private var mem: ULong = 0u
+    private var memory: ULong = 0u
 
-    infix fun memory(m: ULong) {
-        mem = m
+    infix fun memory(memory: ULong) {
+       this.memory = memory
     }
 
     fun build(): KontainerSpecResources =
         KontainerSpecResources(
-            memory = mem
+            memory = memory
         )
 }
 
