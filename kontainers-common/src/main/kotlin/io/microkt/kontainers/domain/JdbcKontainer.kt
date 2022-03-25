@@ -5,7 +5,7 @@ package io.microkt.kontainers.domain
  *
  * @author Scott Rossillo
  */
-interface JdbcKontainer : Kontainer {
+interface JdbcKontainer : DatabaseKontainer {
     /**
      * Name of the JDBC driver used to connect to this Kontainer's database.
      */
@@ -15,14 +15,4 @@ interface JdbcKontainer : Kontainer {
      * Returns a JDBC URL for connecting to this Kontainer's database.
      */
     fun createJdbcUrl(): String
-
-    /**
-     * Returns this Kontainer's default database username.
-     */
-    fun getUsername(): String
-
-    /**
-     * Returns this Kontainer's default database password.
-     */
-    fun getPassword(): String
 }

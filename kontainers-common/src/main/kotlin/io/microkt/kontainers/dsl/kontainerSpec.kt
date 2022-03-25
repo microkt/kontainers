@@ -2,6 +2,8 @@ package io.microkt.kontainers.dsl
 
 import io.microkt.kontainers.domain.KontainerPort
 import io.microkt.kontainers.domain.KontainerSpec
+import io.microkt.kontainers.domain.KontainerSpecResources
+import io.microkt.kontainers.domain.MB
 
 /**
  * Functional interface for defining [KontainerSpec]s.
@@ -24,6 +26,7 @@ fun kontainerSpec(baseSpec: KontainerSpec, block: KontainerSpecBuilder.() -> Uni
  */
 @KontainerDsl
 class KontainerEnvironmentBuilder {
+    val x =  this
     private val env: MutableMap<String, String> = mutableMapOf()
 
     infix fun set(kv: Pair<String, String>) {
@@ -52,6 +55,21 @@ class KontainerPortBuilder {
     fun build(): List<KontainerPort> = ports
 }
 
+@KontainerDsl
+class KontainerSpecResourceBuilder {
+    val limit = this
+    private var mem: ULong = 0u
+
+    infix fun memory(m: ULong) {
+        mem = m
+    }
+
+    fun build(): KontainerSpecResources =
+        KontainerSpecResources(
+            memory = mem
+        )
+}
+
 /**
  * Kontainer DSL [KontainerSpec] builder.
  *
@@ -71,6 +89,7 @@ class KontainerSpecBuilder() {
         command = baseSpec.command
         environment.putAll(baseSpec.environment)
         ports.addAll(baseSpec.ports)
+        resources = baseSpec.resources
     }
 
     var name: String? = null
@@ -78,6 +97,9 @@ class KontainerSpecBuilder() {
     var command: List<String> = listOf()
     private val environment: MutableMap<String, String> = mutableMapOf()
     private val ports: MutableList<KontainerPort> = mutableListOf()
+    private var resources: KontainerSpecResources? = KontainerSpecResources(
+        memory = 48.MB
+    )
 
     fun ports(block: KontainerPortBuilder.() -> Unit) {
         val b = KontainerPortBuilder()
@@ -90,16 +112,26 @@ class KontainerSpecBuilder() {
         environment.putAll(env)
     }
 
+    fun resources(block: KontainerSpecResourceBuilder.() -> Unit) {
+        resources = KontainerSpecResourceBuilder().apply(block).build()
+    }
+
     fun build(): KontainerSpec {
         if (ports.isEmpty()) {
             throw IllegalStateException("One or more port(s) must be configured")
         }
+
+        if (resources == null) {
+            throw IllegalStateException("Kontainer resources must be specified")
+        }
+
         return KontainerSpec(
             name = name!!,
             image = image!!,
             ports = ports,
             command = command,
             environment = environment,
+            resources = resources!!
         )
     }
 }
