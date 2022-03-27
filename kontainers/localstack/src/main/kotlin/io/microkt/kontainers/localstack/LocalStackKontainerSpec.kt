@@ -1,5 +1,6 @@
 package io.microkt.kontainers.localstack
 
+import io.microkt.kontainers.domain.MB
 import io.microkt.kontainers.dsl.kontainerSpec
 
 /**
@@ -13,6 +14,9 @@ val localStackKontainerSpec = kontainerSpec {
     image = "localstack/localstack:0.14"
     ports {
         expose tcp 4566
+    },
+    resources {
+        limit memory 512.MB
     }
 }
 
