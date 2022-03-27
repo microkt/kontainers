@@ -25,7 +25,7 @@ internal class KontainerExtensionTest(
 
     @Test
     fun testContainerImages() {
-        assertEquals("redis:${RedisKontainer.VERSION}", redis.kontainerSpec.image)
+        assertEquals("redis:6.2-alpine", redis.kontainerSpec.image)
         assertEquals("redis:6.2-buster", redis2.kontainerSpec.image)
     }
 
