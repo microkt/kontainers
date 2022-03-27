@@ -2,6 +2,8 @@ package io.microkt.kontainers.docker.runner
 
 import io.microkt.kontainers.docker.client.DockerFacade
 import io.microkt.kontainers.domain.KontainerSpec
+import io.microkt.kontainers.domain.KontainerSpecResources
+import io.microkt.kontainers.domain.MB
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.confirmVerified
@@ -24,7 +26,8 @@ internal class DockerKontainerRunnerTest {
     private val kontainerSpec = KontainerSpec(
         name = "foo",
         image = IMAGE,
-        ports = listOf()
+        ports = listOf(),
+        resources = KontainerSpecResources(memory = 128.MB)
     )
 
     @Test
