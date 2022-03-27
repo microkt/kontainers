@@ -63,7 +63,7 @@ class KontainerSpecResourceBuilder {
     private var memory: ULong = 0u
 
     infix fun memory(memory: ULong) {
-       this.memory = memory
+        this.memory = memory
     }
 
     fun build(): KontainerSpecResources =
