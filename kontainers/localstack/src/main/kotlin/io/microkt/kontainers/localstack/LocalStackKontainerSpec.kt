@@ -14,7 +14,7 @@ val localStackKontainerSpec = kontainerSpec {
     image = "localstack/localstack:0.14"
     ports {
         expose tcp 4566
-    },
+    }
     resources {
         limit memory 512.MB
     }
