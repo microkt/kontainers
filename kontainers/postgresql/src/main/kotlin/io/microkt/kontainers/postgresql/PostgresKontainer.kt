@@ -4,6 +4,7 @@ import io.microkt.kontainers.domain.GenericTcpKontainer
 import io.microkt.kontainers.domain.JdbcKontainer
 import io.microkt.kontainers.domain.Kontainer
 import io.microkt.kontainers.domain.KontainerSpec
+import io.microkt.kontainers.domain.R2dbcKontainer
 
 /**
  * Provides a Postgres [Kontainer].
@@ -14,7 +15,10 @@ import io.microkt.kontainers.domain.KontainerSpec
 class PostgresKontainer(
     override val kontainerSpec: KontainerSpec,
     parentKontainer: Kontainer
-) : JdbcKontainer, GenericTcpKontainer(kontainerSpec, parentKontainer) {
+) : JdbcKontainer, R2dbcKontainer, GenericTcpKontainer(kontainerSpec, parentKontainer) {
+
+    override fun createR2dbcUrl(): String =
+        "r2dbc:postgresql://${this.getAddress()}:${this.getPort()}/${this.getDatabaseName()}"
 
     /**
      * JDBC driver `org.postgresql.Driver`.
@@ -22,7 +26,10 @@ class PostgresKontainer(
     override val driverClassName = "org.postgresql.Driver"
 
     override fun createJdbcUrl(): String =
-        "jdbc:postgresql://${this.getAddress()}:${this.getPort()}/${kontainerSpec.environment[POSTGRES_DB]}"
+        "jdbc:postgresql://${this.getAddress()}:${this.getPort()}/${this.getDatabaseName()}"
+
+    override fun getDatabaseName(): String =
+        kontainerSpec.environment[POSTGRES_DB]!!
 
     override fun getUsername(): String = kontainerSpec.environment[POSTGRES_USER]!!
 

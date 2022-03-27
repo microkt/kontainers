@@ -28,7 +28,10 @@ class MysqlKontainer(
     override val driverClassName = "com.mysql.jdbc.driver"
 
     override fun createJdbcUrl(): String =
-        "jdbc:mysql://${this.getAddress()}:${this.getPort()}/${kontainerSpec.environment[Env.MYSQL_DATABASE]}"
+        "jdbc:mysql://${this.getAddress()}:${this.getPort()}/${this.getDatabaseName()}"
+
+    override fun getDatabaseName(): String =
+        kontainerSpec.environment[Env.MYSQL_DATABASE]!!
 
     override fun getUsername(): String = kontainerSpec.environment[Env.MYSQL_USER]!!
 
@@ -52,6 +55,6 @@ class MysqlKontainer(
      */
     override fun waitForReady(timeout: Long) {
         super.waitForReady(timeout)
-        runBlocking { delay(10.seconds.toJavaDuration()) }
+        runBlocking { delay(15.seconds.toJavaDuration()) }
     }
 }

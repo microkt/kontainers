@@ -21,6 +21,6 @@ class ZookeeperKontainerFactory : AbstractKontainerFactory<ZookeeperKontainer>()
             parent = runner.createSync(kontainerSpec)
         )
 
-    override fun supports(kontainerKClass: KClass<Kontainer>): Boolean =
+    override fun supports(kontainerKClass: KClass<out Kontainer>): Boolean =
         kontainerKClass == ZookeeperKontainer::class
 }

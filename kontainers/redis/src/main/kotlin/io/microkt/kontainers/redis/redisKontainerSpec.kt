@@ -9,8 +9,8 @@ import io.microkt.kontainers.dsl.kontainerSpec
  */
 val redisKontainerSpec = kontainerSpec {
     name = "redis"
-    image = "${RedisKontainer.IMAGE}:${RedisKontainer.VERSION}"
+    image = "redis:6.2-alpine"
     ports {
-        expose tcp RedisKontainer.PORT
+        expose tcp 6379
     }
 }

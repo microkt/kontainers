@@ -23,6 +23,6 @@ class PostgresKontainerFactory : AbstractKontainerFactory<PostgresKontainer>(), 
         )
     }
 
-    override fun supports(kontainerKClass: KClass<Kontainer>): Boolean =
+    override fun supports(kontainerKClass: KClass<out Kontainer>): Boolean =
         kontainerKClass == PostgresKontainer::class
 }

@@ -57,6 +57,6 @@ class KafkaKontainerFactory : KontainerFactory<KafkaKontainer> {
 
     override fun createKontainer(): KafkaKontainer = createKontainer(kontainerSpec)
 
-    override fun supports(kontainerKClass: KClass<Kontainer>): Boolean =
+    override fun supports(kontainerKClass: KClass<out Kontainer>): Boolean =
         kontainerKClass == KafkaKontainer::class
 }

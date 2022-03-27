@@ -1,5 +1,6 @@
 package io.microkt.kontainers.postgresql
 
+import io.microkt.kontainers.domain.MB
 import io.microkt.kontainers.dsl.kontainerSpec
 import io.microkt.kontainers.postgresql.PostgresKontainer.Env.POSTGRES_DB
 import io.microkt.kontainers.postgresql.PostgresKontainer.Env.POSTGRES_PASSWORD
@@ -22,5 +23,8 @@ val postgresKontainerSpec = kontainerSpec {
     }
     ports {
         expose tcp 5432
+    }
+    resources {
+        limit memory 256.MB
     }
 }
