@@ -1,5 +1,6 @@
 package io.microkt.kontainers.redis
 
+import io.microkt.kontainers.domain.MB
 import io.microkt.kontainers.dsl.kontainerSpec
 
 /**
@@ -12,5 +13,8 @@ val redisKontainerSpec = kontainerSpec {
     image = "redis:6.2-alpine"
     ports {
         expose tcp 6379
+    }
+    resources {
+        limit memory 128.MB
     }
 }

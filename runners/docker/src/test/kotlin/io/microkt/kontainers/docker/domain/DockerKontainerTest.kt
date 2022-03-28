@@ -3,6 +3,7 @@ package io.microkt.kontainers.docker.domain
 import io.microkt.kontainers.docker.runner.DockerKontainerRunner
 import io.microkt.kontainers.domain.Kontainer
 import io.microkt.kontainers.domain.KontainerSpec
+import io.microkt.kontainers.domain.MB
 import io.microkt.kontainers.dsl.kontainerSpec
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.AfterAll
@@ -23,6 +24,9 @@ internal class DockerKontainerTest {
             ports {
                 expose tcp 80
                 expose tcp 443
+            }
+            resources {
+                limit memory 64.MB
             }
         }
 

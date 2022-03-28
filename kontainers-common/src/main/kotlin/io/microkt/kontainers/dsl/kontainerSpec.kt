@@ -60,7 +60,7 @@ class KontainerPortBuilder {
 @KontainerDsl
 class KontainerSpecResourceBuilder {
     val limit = this
-    private var memory: ULong = 0u
+    private var memory: ULong? = null
 
     infix fun memory(memory: ULong) {
         this.memory = memory
@@ -68,7 +68,7 @@ class KontainerSpecResourceBuilder {
 
     fun build(): KontainerSpecResources =
         KontainerSpecResources(
-            memory = memory
+            memory = memory!!
         )
 }
 
@@ -99,9 +99,7 @@ class KontainerSpecBuilder() {
     var command: List<String> = listOf()
     private val environment: MutableMap<String, String> = mutableMapOf()
     private val ports: MutableList<KontainerPort> = mutableListOf()
-    private var resources: KontainerSpecResources? = KontainerSpecResources(
-        memory = 48.MB
-    )
+    private var resources: KontainerSpecResources? = null
 
     fun ports(block: KontainerPortBuilder.() -> Unit) {
         val b = KontainerPortBuilder()

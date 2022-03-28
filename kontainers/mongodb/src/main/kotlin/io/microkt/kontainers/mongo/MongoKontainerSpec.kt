@@ -1,5 +1,6 @@
 package io.microkt.kontainers.mongo
 
+import io.microkt.kontainers.domain.MB
 import io.microkt.kontainers.dsl.kontainerSpec
 import io.microkt.kontainers.mongo.MongoKontainer.Env.MONGO_INITDB_ROOT_PASSWORD
 import io.microkt.kontainers.mongo.MongoKontainer.Env.MONGO_INITDB_ROOT_USERNAME
@@ -19,5 +20,8 @@ val mongoKontainerSpec = kontainerSpec {
     }
     ports {
         expose tcp 27017
+    }
+    resources {
+        limit memory 512.MB
     }
 }
