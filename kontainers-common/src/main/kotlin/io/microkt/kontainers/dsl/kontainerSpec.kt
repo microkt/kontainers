@@ -3,7 +3,6 @@ package io.microkt.kontainers.dsl
 import io.microkt.kontainers.domain.KontainerPort
 import io.microkt.kontainers.domain.KontainerSpec
 import io.microkt.kontainers.domain.KontainerSpecResources
-import io.microkt.kontainers.domain.MB
 
 /**
  * Functional interface for defining [KontainerSpec]s.
