@@ -1,7 +1,6 @@
 package io.microkt.kontainers.junit5.extension
 
 import io.microkt.kontainers.domain.KontainerSpec
-import io.microkt.kontainers.domain.KontainerSpecResources
 import io.microkt.kontainers.junit5.annotation.KontainerSpecOverride
 
 /**
@@ -30,10 +29,6 @@ internal class KontainerSpecCustomizer(private val kontainerSpec: KontainerSpec)
                     val (name, value) = e.split('=', limit = 2)
                     it[name] = value
                 }
-            },
-            resources = KontainerSpecResources(
-                memory = if (kontainerSpecOverride.memory > 0u) kontainerSpecOverride.memory else kontainerSpec.resources.memory
-            )
-
+            }
         )
 }

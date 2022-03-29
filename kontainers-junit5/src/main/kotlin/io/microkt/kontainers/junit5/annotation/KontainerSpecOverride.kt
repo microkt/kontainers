@@ -9,6 +9,5 @@ package io.microkt.kontainers.junit5.annotation
  */
 annotation class KontainerSpecOverride(
     val image: String = "",
-    val environment: Array<String> = [],
-    val memory: ULong = 0u
+    val environment: Array<String> = []
 )

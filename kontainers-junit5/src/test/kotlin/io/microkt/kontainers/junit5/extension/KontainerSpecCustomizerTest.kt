@@ -28,35 +28,24 @@ internal class KontainerSpecCustomizerTest {
 
     @Test
     fun customizeImageOnly() {
-        val override = customizer.customize(KontainerSpecOverride(image = "foo:2", environment = arrayOf(), memory = 0u))
+        val override = customizer.customize(KontainerSpecOverride(image = "foo:2", environment = arrayOf()))
         assertEquals("foo:2", override.image)
         assertEquals(spec.environment, override.environment)
-        assertEquals(10.MB, override.resources.memory)
     }
 
     @Test
     fun customizeEnvironmentOnly() {
-        val override = customizer.customize(KontainerSpecOverride(image = "", environment = arrayOf("BAR=baz"), memory = 0u))
+        val override = customizer.customize(KontainerSpecOverride(image = "", environment = arrayOf("BAR=baz")))
         val expectedEnv = spec.environment.toMutableMap().also { it["BAR"] = "baz" }
         assertEquals("foo:1", override.image)
         assertEquals(expectedEnv, override.environment)
-        assertEquals(10.MB, override.resources.memory)
     }
 
     @Test
     fun customizeEnvironmentReplaceValue() {
-        val override = customizer.customize(KontainerSpecOverride(image = "", environment = arrayOf("FOO=baz"), memory = 0u))
+        val override = customizer.customize(KontainerSpecOverride(image = "", environment = arrayOf("FOO=baz")))
         val expectedEnv = spec.environment.toMutableMap().also { it["FOO"] = "baz" }
         assertEquals("foo:1", override.image)
         assertEquals(expectedEnv, override.environment)
-        assertEquals(10.MB, override.resources.memory)
-    }
-
-    @Test
-    fun customizeResourcesOnly() {
-        val override = customizer.customize(KontainerSpecOverride(image = "", environment = arrayOf(), memory = 15.MB))
-        assertEquals("foo:1", override.image)
-        assertEquals(spec.environment, override.environment)
-        assertEquals(15.MB, override.resources.memory)
     }
 }
