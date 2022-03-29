@@ -26,6 +26,6 @@ val mysqlKontainerSpec = kontainerSpec {
         expose tcp 3306
     }
     resources {
-        limit memory 256.MB
+        limit memory 512.MB
     }
 }
