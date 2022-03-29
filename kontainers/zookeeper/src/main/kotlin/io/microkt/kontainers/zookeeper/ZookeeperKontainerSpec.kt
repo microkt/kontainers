@@ -1,5 +1,6 @@
 package io.microkt.kontainers.zookeeper
 
+import io.microkt.kontainers.domain.MB
 import io.microkt.kontainers.dsl.kontainerSpec
 
 /**
@@ -17,5 +18,8 @@ val zookeeperKontainerSpec = kontainerSpec {
     }
     ports {
         expose tcp 2181
+    }
+    resources {
+        limit memory 256.MB
     }
 }

@@ -1,5 +1,6 @@
 package io.microkt.kontainers.junit5.extension
 
+import io.microkt.kontainers.domain.MB
 import io.microkt.kontainers.dsl.kontainerSpec
 import io.microkt.kontainers.junit5.annotation.KontainerSpecOverride
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -17,6 +18,9 @@ internal class KontainerSpecCustomizerTest {
         }
         ports {
             expose tcp 80
+        }
+        resources {
+            limit memory 10.MB
         }
     }
 

@@ -1,5 +1,6 @@
 package io.microkt.kontainers.mysql
 
+import io.microkt.kontainers.domain.MB
 import io.microkt.kontainers.dsl.kontainerSpec
 import io.microkt.kontainers.mysql.MysqlKontainer.Env.MYSQL_DATABASE
 import io.microkt.kontainers.mysql.MysqlKontainer.Env.MYSQL_PASSWORD
@@ -23,5 +24,8 @@ val mysqlKontainerSpec = kontainerSpec {
     }
     ports {
         expose tcp 3306
+    }
+    resources {
+        limit memory 512.MB
     }
 }

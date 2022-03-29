@@ -34,11 +34,16 @@ internal class DockerExternalApiClient(private val client: DockerClient) : Docke
                 HostConfig
                     .newHostConfig()
                     .withPortBindings(kontainerSpec.portBindings())
+                    .withMemory(kontainerSpec.resources.memory.toLong())
             )
-
-        if (kontainerSpec.command.isNotEmpty()) {
-            cmd.withCmd(kontainerSpec.command)
-        }
+            .withLabels(
+                mapOf("io.microkt.kontainers" to "true")
+            )
+            .also {
+                if (kontainerSpec.command.isNotEmpty()) {
+                    it.withCmd(kontainerSpec.command)
+                }
+            }
 
         log.info { "Starting container with command: $cmd" }
 

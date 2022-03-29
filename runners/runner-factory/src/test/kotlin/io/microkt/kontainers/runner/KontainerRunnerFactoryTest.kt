@@ -2,6 +2,7 @@ package io.microkt.kontainers.runner
 
 import io.kubernetes.client.openapi.ApiException
 import io.microkt.kontainers.domain.Kontainer
+import io.microkt.kontainers.domain.MB
 import io.microkt.kontainers.dsl.kontainerSpec
 import kotlinx.coroutines.runBlocking
 import mu.KotlinLogging
@@ -23,6 +24,9 @@ internal class KontainerRunnerFactoryTest {
         image = "nginx:stable-alpine"
         ports {
             expose tcp 80
+        }
+        resources {
+            limit memory 64.MB
         }
     }
 

@@ -24,7 +24,7 @@ class KubernetesKontainerRunner(
     private val kubernetesClient: KubernetesClient = CheckedKubernetesApiClient.create()
 ) : KontainerRunner {
 
-    private val minikubeIp: String? by KontainerPropertyDelegate
+    private val minikubeIp: String? by KontainerPropertyDelegate.optional
 
     private fun kubernetesKontainer(spec: KontainerSpec, pod: V1Pod, service: V1Service): KubernetesKontainer =
         if (minikubeIp != null) {

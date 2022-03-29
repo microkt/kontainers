@@ -23,6 +23,6 @@ class LocalStackFactory : AbstractKontainerFactory<LocalStackKontainer>(), Konta
         )
     }
 
-    override fun supports(kontainerKClass: KClass<Kontainer>): Boolean =
+    override fun supports(kontainerKClass: KClass<out Kontainer>): Boolean =
         kontainerKClass == LocalStackKontainer::class
 }

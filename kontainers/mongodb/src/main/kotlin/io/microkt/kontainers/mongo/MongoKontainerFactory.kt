@@ -22,6 +22,6 @@ class MongoKontainerFactory : AbstractKontainerFactory<MongoKontainer>(), Kontai
         )
     }
 
-    override fun supports(kontainerKClass: KClass<Kontainer>): Boolean =
+    override fun supports(kontainerKClass: KClass<out Kontainer>): Boolean =
         kontainerKClass == MongoKontainer::class
 }

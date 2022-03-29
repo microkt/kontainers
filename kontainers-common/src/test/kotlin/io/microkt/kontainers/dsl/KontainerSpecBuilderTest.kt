@@ -2,6 +2,7 @@ package io.microkt.kontainers.dsl
 
 import io.microkt.kontainers.domain.KontainerPort
 import io.microkt.kontainers.domain.KontainerSpec
+import io.microkt.kontainers.domain.MB
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.Test
@@ -29,6 +30,9 @@ internal class KontainerSpecBuilderTest {
         ports {
             expose tcp 80
             expose udp 53
+        }
+        resources {
+            limit memory 10.MB
         }
     }
 
@@ -73,6 +77,9 @@ internal class KontainerSpecBuilderTest {
                 ports {
                     expose tcp 80
                 }
+                resources {
+                    memory(1.MB)
+                }
             }
         }
     }
@@ -85,6 +92,9 @@ internal class KontainerSpecBuilderTest {
                 ports {
                     expose tcp 80
                 }
+                resources {
+                    limit memory 1.MB
+                }
             }
         }
     }
@@ -95,6 +105,36 @@ internal class KontainerSpecBuilderTest {
             kontainerSpec {
                 name = NAME
                 image = IMAGE
+                resources {
+                    limit memory 1.MB
+                }
+            }
+        }
+    }
+
+    @Test
+    fun throwsOnMissingResources() {
+        assertThrows<IllegalStateException> {
+            kontainerSpec {
+                name = NAME
+                image = IMAGE
+                ports {
+                    expose tcp 80
+                }
+            }
+        }
+    }
+
+    @Test
+    fun throwsOnMissingMemory() {
+        assertThrows<NullPointerException> {
+            kontainerSpec {
+                name = NAME
+                image = IMAGE
+                ports {
+                    expose tcp 80
+                }
+                resources { }
             }
         }
     }

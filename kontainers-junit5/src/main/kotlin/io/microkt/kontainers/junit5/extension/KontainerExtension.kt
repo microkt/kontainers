@@ -1,9 +1,10 @@
 package io.microkt.kontainers.junit5.extension
 
+import io.microkt.kontainers.domain.JdbcKontainer
 import io.microkt.kontainers.domain.Kontainer
 import io.microkt.kontainers.domain.KontainerFactory
 import io.microkt.kontainers.domain.KontainerSpec
-import io.microkt.kontainers.dsl.kontainerSpec
+import io.microkt.kontainers.domain.R2dbcKontainer
 import io.microkt.kontainers.junit5.annotation.KontainerSpecOverride
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -68,6 +69,27 @@ open class KontainerExtension : AfterAllCallback, ParameterResolver {
         return KontainerSpecCustomizer(kontainerSpec).customize(override)
     }
 
+    open fun kontainerStarted(kontainer: Kontainer) {
+        if (kontainer is JdbcKontainer) {
+            log.info { "Export Spring DataSource properties" }
+            System.setProperty("spring.datasource.url", kontainer.createJdbcUrl())
+            System.setProperty("spring.datasource.username", kontainer.getUsername())
+            System.setProperty("spring.datasource.password", kontainer.getPassword())
+
+            log.info { "Export Spring Flyway DataSource properties" }
+            System.setProperty("spring.flyway.url", kontainer.createJdbcUrl())
+            System.setProperty("spring.flyway.user", kontainer.getUsername())
+            System.setProperty("spring.flyway.password", kontainer.getPassword())
+        }
+
+        if (kontainer is R2dbcKontainer) {
+            log.info { "Export Spring R2DBC properties" }
+            System.setProperty("spring.r2dbc.url", kontainer.createR2dbcUrl())
+            System.setProperty("spring.r2dbc.username", kontainer.getUsername())
+            System.setProperty("spring.r2dbc.password", kontainer.getPassword())
+        }
+    }
+
     private fun resolveKontainer(parameterContext: ParameterContext): Kontainer {
         val factory = resolveKontainerFactory(kontainerKClass(parameterContext.kotlinType()), parameterContext)
         val ann = parameterContext.findAnnotation(KontainerSpecOverride::class.java)
@@ -79,6 +101,8 @@ open class KontainerExtension : AfterAllCallback, ParameterResolver {
         runBlocking(Dispatchers.IO) {
             k.start(timeout = 60_000) // FIXME: hard coded timeout
         }
+
+        kontainerStarted(k)
 
         return k
     }

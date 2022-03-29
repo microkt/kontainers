@@ -22,6 +22,6 @@ class MysqlKontainerFactory : AbstractKontainerFactory<MysqlKontainer>(), Kontai
         )
     }
 
-    override fun supports(kontainerKClass: KClass<Kontainer>): Boolean =
+    override fun supports(kontainerKClass: KClass<out Kontainer>): Boolean =
         kontainerKClass == MysqlKontainer::class
 }

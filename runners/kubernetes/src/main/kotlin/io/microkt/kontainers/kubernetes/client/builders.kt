@@ -11,6 +11,7 @@ import io.kubernetes.client.openapi.models.V1Service
 import io.kubernetes.client.openapi.models.V1ServiceBuilder
 import io.kubernetes.client.openapi.models.V1ServicePortBuilder
 import io.microkt.kontainers.domain.KontainerSpec
+import java.math.BigDecimal
 
 // FIXME: need to make memory and CPU configurable
 fun createPodSpec(spec: KontainerSpec, uniqueName: String): V1Pod =
@@ -38,14 +39,14 @@ fun createPodSpec(spec: KontainerSpec, uniqueName: String): V1Pod =
             V1ResourceRequirements()
                 .limits(
                     mapOf(
-                        "cpu" to Quantity.fromString("0.4"),
-                        "memory" to Quantity.fromString("400Mi")
+                        "cpu" to Quantity.fromString("0.49"),
+                        "memory" to Quantity(BigDecimal.valueOf(spec.resources.memory.toLong()), Quantity.Format.DECIMAL_SI)
                     )
                 )
                 .requests(
                     mapOf(
-                        "cpu" to Quantity.fromString("0.4"),
-                        "memory" to Quantity.fromString("400Mi")
+                        "cpu" to Quantity.fromString("0.49"),
+                        "memory" to Quantity(BigDecimal.valueOf(spec.resources.memory.toLong()), Quantity.Format.DECIMAL_SI)
                     )
                 )
         )
@@ -53,18 +54,30 @@ fun createPodSpec(spec: KontainerSpec, uniqueName: String): V1Pod =
         .endSpec()
         .build()
 
-fun createServiceSpec(spec: KontainerSpec, pod: V1Pod): V1Service =
+fun createServiceSpec(spec: KontainerSpec, pod: V1Pod, serviceType: String = "NodePort"): V1Service =
     V1ServiceBuilder()
         .withApiVersion("v1")
         .withKind("Service")
         .withNewMetadata()
         .withName(pod.metadata!!.name)
-        .withLabels<String, String>(mapOf("app" to pod.metadata!!.name, "kontainers" to "true"))
+        .withLabels<String, String>(
+            mapOf(
+                "app" to pod.metadata!!.name,
+                "kontainers" to "true"
+            )
+        )
         .endMetadata()
         .withNewSpec()
-        .withType("NodePort")
+        .withType(serviceType)
         .withSelector<String, String>(mapOf("app" to pod.metadata!!.name))
         .withPorts(
+            // spec.ports.map { port ->
+            //     V1ServicePortBuilder()
+            //         .withName(port.port.toString())
+            //         .withPort(port.port)
+            //         .withNewTargetPort(port.port)
+            //         .build()
+            // }
             V1ServicePortBuilder()
                 .withName(spec.ports.first().port.toString())
                 .withPort(spec.ports.first().port)

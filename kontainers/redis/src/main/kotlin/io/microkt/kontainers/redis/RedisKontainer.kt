@@ -12,24 +12,4 @@ import io.microkt.kontainers.domain.KontainerSpec
 class RedisKontainer(
     override val kontainerSpec: KontainerSpec,
     parent: Kontainer
-) : GenericTcpKontainer(kontainerSpec, parent) {
-    /**
-     * Redis Kontainer defaults.
-     */
-    companion object Defaults {
-        /**
-         * The default Redis image `redis`.
-         */
-        const val IMAGE = "redis"
-
-        /**
-         * The default Redis port.
-         */
-        const val PORT = 6379
-
-        /**
-         * The default Redis version `6.2-alpine`.
-         */
-        const val VERSION = "6.2-alpine"
-    }
-}
+) : GenericTcpKontainer(kontainerSpec, parent)

@@ -26,8 +26,8 @@ interface KontainerFactory<T : Kontainer> {
     fun createKontainer(kontainerSpec: KontainerSpec): T
 
     /**
-     * Returns true of this [KontainerFactory] is capable of
+     * Returns true if this [KontainerFactory] is capable of
      * instantiating a [Kontainer] of the given [kontainerKClass].
      */
-    fun supports(kontainerKClass: KClass<Kontainer>): Boolean
+    fun supports(kontainerKClass: KClass<out Kontainer>): Boolean
 }
