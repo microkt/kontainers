@@ -49,12 +49,12 @@ class KafkaKontainerFactory : KontainerFactory<KafkaKontainer> {
                 .also { env ->
                     env.putAll(kontainerSpec.environment)
                     if (KontainerRunnerFactory.determineBackend() == KontainerRunnerFactory.Backend.DOCKER) {
-                        env["KAFKA_CFG_ADVERTISED_LISTENERS"] = "PLAINTEXT://127.0.0.1:$bindPort"
+                        env["KAFKA_CFG_ADVERTISED_LISTENERS"] = "PLAINTEXT://127.0.0.1:9092"
                     }
                 },
             ports = kontainerSpec.ports.map { kontainerPort ->
                 when (kontainerPort.port) {
-                    9092 -> BoundKontainerPort.of(kontainerPort, bindPort)
+                    9092 -> BoundKontainerPort.of(kontainerPort, 9092)
                     else -> kontainerPort
                 }
             }
