@@ -3,6 +3,7 @@ package io.microkt.kontainers.mongo
 import io.microkt.kontainers.domain.GenericTcpKontainer
 import io.microkt.kontainers.domain.Kontainer
 import io.microkt.kontainers.domain.KontainerSpec
+import io.microkt.kontainers.domain.PlatformKontainer
 
 /**
  * Provides a MongoDB [Kontainer].
@@ -13,8 +14,8 @@ import io.microkt.kontainers.domain.KontainerSpec
  */
 class MongoKontainer(
     override val kontainerSpec: KontainerSpec,
-    parent: Kontainer
-) : GenericTcpKontainer(kontainerSpec, parent) {
+    delegate: PlatformKontainer
+) : GenericTcpKontainer(kontainerSpec, delegate) {
     /**
      * MongoDB environment variables.
      */

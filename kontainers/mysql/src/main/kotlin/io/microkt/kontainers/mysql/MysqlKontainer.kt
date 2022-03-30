@@ -4,6 +4,7 @@ import io.microkt.kontainers.domain.GenericTcpKontainer
 import io.microkt.kontainers.domain.JdbcKontainer
 import io.microkt.kontainers.domain.Kontainer
 import io.microkt.kontainers.domain.KontainerSpec
+import io.microkt.kontainers.domain.PlatformKontainer
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.time.delay
 import kotlin.time.Duration.Companion.seconds
@@ -19,8 +20,8 @@ import kotlin.time.toJavaDuration
  */
 class MysqlKontainer(
     override val kontainerSpec: KontainerSpec,
-    parentKontainer: Kontainer
-) : JdbcKontainer, GenericTcpKontainer(kontainerSpec, parentKontainer) {
+    delegate: PlatformKontainer
+) : JdbcKontainer, GenericTcpKontainer(kontainerSpec, delegate) {
 
     /**
      * JDBC driver `com.mysql.jdbc.driver`.

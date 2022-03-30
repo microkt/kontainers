@@ -19,7 +19,7 @@ class PostgresKontainerFactory : AbstractKontainerFactory<PostgresKontainer>(), 
     override fun createKontainer(kontainerSpec: KontainerSpec): PostgresKontainer {
         return PostgresKontainer(
             kontainerSpec = kontainerSpec,
-            parentKontainer = runner.createSync(kontainerSpec)
+            delegate = runner.createSync(kontainerSpec)
         )
     }
 

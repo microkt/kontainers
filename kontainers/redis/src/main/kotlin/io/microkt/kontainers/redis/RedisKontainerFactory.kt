@@ -18,7 +18,7 @@ class RedisKontainerFactory : AbstractKontainerFactory<RedisKontainer>(), Kontai
     override fun createKontainer(kontainerSpec: KontainerSpec): RedisKontainer =
         RedisKontainer(
             kontainerSpec = kontainerSpec,
-            parent = runner.createSync(kontainerSpec)
+            worker = runner.createSync(kontainerSpec)
         )
 
     override fun supports(kontainerKClass: KClass<out Kontainer>): Boolean =

@@ -4,6 +4,7 @@ import io.microkt.kontainers.domain.GenericTcpKontainer
 import io.microkt.kontainers.domain.JdbcKontainer
 import io.microkt.kontainers.domain.Kontainer
 import io.microkt.kontainers.domain.KontainerSpec
+import io.microkt.kontainers.domain.PlatformKontainer
 import io.microkt.kontainers.domain.R2dbcKontainer
 
 /**
@@ -14,8 +15,8 @@ import io.microkt.kontainers.domain.R2dbcKontainer
  */
 class PostgresKontainer(
     override val kontainerSpec: KontainerSpec,
-    parentKontainer: Kontainer
-) : JdbcKontainer, R2dbcKontainer, GenericTcpKontainer(kontainerSpec, parentKontainer) {
+    delegate: PlatformKontainer
+) : JdbcKontainer, R2dbcKontainer, GenericTcpKontainer(kontainerSpec, delegate) {
 
     override fun createR2dbcUrl(): String =
         "r2dbc:postgresql://${this.getAddress()}:${this.getPort()}/${this.getDatabaseName()}"

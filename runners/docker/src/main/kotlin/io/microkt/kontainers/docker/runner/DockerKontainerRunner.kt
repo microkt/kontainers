@@ -5,6 +5,7 @@ import io.microkt.kontainers.docker.client.DockerFacade
 import io.microkt.kontainers.docker.domain.DockerKontainer
 import io.microkt.kontainers.domain.Kontainer
 import io.microkt.kontainers.domain.KontainerSpec
+import io.microkt.kontainers.domain.PlatformKontainer
 import io.microkt.kontainers.runner.KontainerRunner
 import mu.KotlinLogging
 
@@ -18,7 +19,7 @@ class DockerKontainerRunner(
 ) : KontainerRunner {
     private val log = KotlinLogging.logger { }
 
-    override suspend fun create(kontainerSpec: KontainerSpec): Kontainer {
+    override suspend fun create(kontainerSpec: KontainerSpec): PlatformKontainer {
         log.debug { "Will request Docker container: $kontainerSpec" }
 
         if (!dockerFacade.imageExists(kontainerSpec.image)) {

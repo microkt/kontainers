@@ -1,5 +1,7 @@
 package io.microkt.kontainers.domain
 
+import io.microkt.kontainers.runner.KontainerRunner
+
 /**
  * Provides an abstract [Kontainer] implementation to handle common
  * Kontainer actions. Delegates to a platform specific [parent] Kontainer
@@ -9,13 +11,11 @@ package io.microkt.kontainers.domain
  */
 abstract class GenericKontainer(
     override val kontainerSpec: KontainerSpec,
-    private val parent: Kontainer
-) : Kontainer {
-    final override val id: String
-        get() = parent.id
+    private val delegate: PlatformKontainer
+) : Kontainer by delegate {
 
     final override suspend fun start(timeout: Long) {
-        parent.start(timeout)
+        delegate.start(timeout)
         waitForReady(timeout)
     }
 
@@ -23,14 +23,4 @@ abstract class GenericKontainer(
      * Blocks until this [Kontainer] is ready to accept requests.
      */
     abstract fun waitForReady(timeout: Long)
-
-    override suspend fun remove() = parent.remove()
-
-    final override fun getPort(): Int? = parent.getPort()
-
-    final override fun getPort(containerPort: Int): Int? = parent.getPort(containerPort)
-
-    final override fun getAddress(): String? = parent.getAddress()
-
-    final override fun getDirectAddress(): String? = parent.getDirectAddress()
 }

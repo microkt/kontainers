@@ -18,7 +18,7 @@ class MysqlKontainerFactory : AbstractKontainerFactory<MysqlKontainer>(), Kontai
     override fun createKontainer(kontainerSpec: KontainerSpec): MysqlKontainer {
         return MysqlKontainer(
             kontainerSpec = kontainerSpec,
-            parentKontainer = runner.createSync(kontainerSpec)
+            delegate = runner.createSync(kontainerSpec)
         )
     }
 

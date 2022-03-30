@@ -1,6 +1,7 @@
 package io.microkt.kontainers.domain
 
 import io.microkt.kontainers.domain.readiness.SocketReadinessProbe
+import io.microkt.kontainers.runner.KontainerRunner
 
 /**
  * Provides a base implementation's [GenericKontainer.waitForReady] based on
@@ -10,8 +11,8 @@ import io.microkt.kontainers.domain.readiness.SocketReadinessProbe
  */
 open class GenericTcpKontainer(
     override val kontainerSpec: KontainerSpec,
-    parent: Kontainer
-) : GenericKontainer(kontainerSpec, parent) {
+    delegate: PlatformKontainer
+) : GenericKontainer(kontainerSpec, delegate) {
 
     /**
      * Waits until this [Kontainer]'s default TCP port is up and accepting requests

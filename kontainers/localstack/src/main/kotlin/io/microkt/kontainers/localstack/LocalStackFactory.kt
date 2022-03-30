@@ -19,7 +19,7 @@ class LocalStackFactory : AbstractKontainerFactory<LocalStackKontainer>(), Konta
     override fun createKontainer(kontainerSpec: KontainerSpec): LocalStackKontainer {
         return LocalStackKontainer(
             kontainerSpec = kontainerSpec,
-            parentHandle = runner.createSync(kontainerSpec)
+            delegate = runner.createSync(kontainerSpec)
         )
     }
 

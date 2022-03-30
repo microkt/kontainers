@@ -18,7 +18,7 @@ class ZookeeperKontainerFactory : AbstractKontainerFactory<ZookeeperKontainer>()
     override fun createKontainer(kontainerSpec: KontainerSpec): ZookeeperKontainer =
         ZookeeperKontainer(
             kontainerSpec = kontainerSpec,
-            parent = runner.createSync(kontainerSpec)
+            delegate = runner.createSync(kontainerSpec)
         )
 
     override fun supports(kontainerKClass: KClass<out Kontainer>): Boolean =

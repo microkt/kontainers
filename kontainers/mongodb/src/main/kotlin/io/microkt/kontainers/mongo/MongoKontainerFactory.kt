@@ -18,7 +18,7 @@ class MongoKontainerFactory : AbstractKontainerFactory<MongoKontainer>(), Kontai
     override fun createKontainer(kontainerSpec: KontainerSpec): MongoKontainer {
         return MongoKontainer(
             kontainerSpec = kontainerSpec,
-            parent = runner.createSync(kontainerSpec)
+            delegate = runner.createSync(kontainerSpec)
         )
     }
 

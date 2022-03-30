@@ -5,10 +5,11 @@ import io.microkt.kontainers.docker.runner.DockerKontainerRunner
 import io.microkt.kontainers.docker.runner.isOsLinux
 import io.microkt.kontainers.domain.Kontainer
 import io.microkt.kontainers.domain.KontainerSpec
+import io.microkt.kontainers.domain.PlatformKontainer
 import mu.KotlinLogging
 
 /**
- * Provides a Docker based [Kontainer] implementation.
+ * Provides a Docker based [PlatformKontainer] implementation.
  *
  * @author Scott Rossillo
  */
@@ -16,7 +17,7 @@ class DockerKontainer(
     override val kontainerSpec: KontainerSpec,
     override val id: String,
     private val dockerKontainerRunner: DockerKontainerRunner
-) : Kontainer {
+) : PlatformKontainer {
 
     private val log = KotlinLogging.logger {}
 

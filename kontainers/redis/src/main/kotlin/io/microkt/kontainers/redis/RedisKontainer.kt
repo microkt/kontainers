@@ -3,6 +3,8 @@ package io.microkt.kontainers.redis
 import io.microkt.kontainers.domain.GenericTcpKontainer
 import io.microkt.kontainers.domain.Kontainer
 import io.microkt.kontainers.domain.KontainerSpec
+import io.microkt.kontainers.domain.PlatformKontainer
+import io.microkt.kontainers.runner.KontainerRunner
 
 /**
  * Provides a Redis [Kontainer].
@@ -11,5 +13,5 @@ import io.microkt.kontainers.domain.KontainerSpec
  */
 class RedisKontainer(
     override val kontainerSpec: KontainerSpec,
-    parent: Kontainer
-) : GenericTcpKontainer(kontainerSpec, parent)
+    worker: PlatformKontainer
+) : GenericTcpKontainer(kontainerSpec, worker)

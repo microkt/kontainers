@@ -3,6 +3,7 @@ package io.microkt.kontainers.localstack
 import io.microkt.kontainers.domain.GenericTcpKontainer
 import io.microkt.kontainers.domain.Kontainer
 import io.microkt.kontainers.domain.KontainerSpec
+import io.microkt.kontainers.domain.PlatformKontainer
 
 /**
  * Provides a [Kontainer] for [LocalStack](https://localstack.cloud/).
@@ -11,8 +12,8 @@ import io.microkt.kontainers.domain.KontainerSpec
  */
 class LocalStackKontainer(
     override val kontainerSpec: KontainerSpec,
-    parentHandle: Kontainer
-) : GenericTcpKontainer(kontainerSpec, parentHandle) {
+    delegate: PlatformKontainer
+) : GenericTcpKontainer(kontainerSpec, delegate) {
     companion object Env {
         const val SERVICES = "SERVICES"
     }

@@ -5,6 +5,7 @@ import io.kubernetes.client.openapi.models.V1Service
 import io.microkt.kontainers.config.KontainerPropertyDelegate
 import io.microkt.kontainers.domain.Kontainer
 import io.microkt.kontainers.domain.KontainerSpec
+import io.microkt.kontainers.domain.PlatformKontainer
 import io.microkt.kontainers.kubernetes.client.CheckedKubernetesApiClient
 import io.microkt.kontainers.kubernetes.client.KubernetesClient
 import io.microkt.kontainers.kubernetes.client.createServiceSpec
@@ -44,7 +45,7 @@ class KubernetesKontainerRunner(
             )
         }
 
-    override suspend fun create(kontainerSpec: KontainerSpec): Kontainer {
+    override suspend fun create(kontainerSpec: KontainerSpec): PlatformKontainer {
         val pod = kubernetesClient.create(kontainerSpec)
         val service = kubernetesClient.create(createServiceSpec(kontainerSpec, pod))
         return kubernetesKontainer(kontainerSpec, pod, service)

@@ -26,7 +26,7 @@ class KafkaKontainerFactory : KontainerFactory<KafkaKontainer> {
         dependsOn.map { spec ->
             GenericTcpKontainer(
                 kontainerSpec = spec,
-                parent = runner.createSync(spec)
+                delegate = runner.createSync(spec)
             )
         }.toSet()
 
@@ -50,7 +50,7 @@ class KafkaKontainerFactory : KontainerFactory<KafkaKontainer> {
 
         return@runBlocking KafkaKontainer(
             kontainerSpec = customKafkaSpec,
-            parent = runner.createSync(customKafkaSpec),
+            delegate = runner.createSync(customKafkaSpec),
             dependencies = dependencies
         )
     }
