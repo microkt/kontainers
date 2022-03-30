@@ -5,7 +5,7 @@ package io.microkt.kontainers.domain
  *
  * @author Scott Rossillo
  */
-data class KontainerPort(
+open class KontainerPort(
     /**
      * The Kontainer port number.
      */

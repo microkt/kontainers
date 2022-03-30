@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test
 import java.util.Optional
 import java.util.concurrent.TimeUnit
 
-@Disabled("unstable")
+// @Disabled("unstable")
 @Kontainers
 @Tags(
     Tag("docker"),

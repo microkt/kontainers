@@ -1,5 +1,6 @@
 package io.microkt.kontainers.kafka
 
+import io.microkt.kontainers.domain.BoundKontainerPort
 import io.microkt.kontainers.domain.GenericTcpKontainer
 import io.microkt.kontainers.domain.Kontainer
 import io.microkt.kontainers.domain.KontainerFactory
@@ -11,6 +12,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.runBlocking
+import java.net.ServerSocket
 import kotlin.reflect.KClass
 
 class KafkaKontainerFactory : KontainerFactory<KafkaKontainer> {
@@ -30,7 +32,11 @@ class KafkaKontainerFactory : KontainerFactory<KafkaKontainer> {
             )
         }.toSet()
 
+    private fun randomPort(): Int =
+        ServerSocket(0).use { it.localPort }
+
     override fun createKontainer(kontainerSpec: KontainerSpec): KafkaKontainer = runBlocking(Dispatchers.IO) {
+        val bindPort = randomPort()
         val dependencies: Set<Kontainer> = createDependencies()
         dependencies.map { async { it.start(30_000) } }.awaitAll()
 
@@ -43,9 +49,15 @@ class KafkaKontainerFactory : KontainerFactory<KafkaKontainer> {
                 .also { env ->
                     env.putAll(kontainerSpec.environment)
                     if (KontainerRunnerFactory.determineBackend() == KontainerRunnerFactory.Backend.DOCKER) {
-                        env["KAFKA_CFG_ADVERTISED_LISTENERS"] = "PLAINTEXT://127.0.0.1:9092"
+                        env["KAFKA_CFG_ADVERTISED_LISTENERS"] = "PLAINTEXT://127.0.0.1:$bindPort"
                     }
+                },
+            ports = kontainerSpec.ports.map { kontainerPort ->
+                when (kontainerPort.port) {
+                    9092 -> BoundKontainerPort.of(kontainerPort, bindPort)
+                    else -> kontainerPort
                 }
+            }
         )
 
         return@runBlocking KafkaKontainer(

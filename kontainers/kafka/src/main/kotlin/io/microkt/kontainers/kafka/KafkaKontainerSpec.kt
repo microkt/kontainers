@@ -1,5 +1,6 @@
 package io.microkt.kontainers.kafka
 
+import io.microkt.kontainers.domain.MB
 import io.microkt.kontainers.dsl.kontainerSpec
 
 val kafkaKontainerSpec = kontainerSpec {
@@ -12,5 +13,8 @@ val kafkaKontainerSpec = kontainerSpec {
     }
     ports {
         expose tcp 9092
+    }
+    resources {
+        limit memory 512.MB
     }
 }
