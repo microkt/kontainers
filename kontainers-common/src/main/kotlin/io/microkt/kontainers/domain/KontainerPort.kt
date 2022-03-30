@@ -34,4 +34,22 @@ open class KontainerPort(
          */
         fun udp(port: Int): KontainerPort = KontainerPort(port, Protocol.UDP)
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as KontainerPort
+
+        if (port != other.port) return false
+        if (protocol != other.protocol) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = port
+        result = 31 * result + protocol.hashCode()
+        return result
+    }
 }

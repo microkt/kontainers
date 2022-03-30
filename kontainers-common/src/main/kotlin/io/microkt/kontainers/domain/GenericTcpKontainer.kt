@@ -1,7 +1,6 @@
 package io.microkt.kontainers.domain
 
 import io.microkt.kontainers.domain.readiness.SocketReadinessProbe
-import io.microkt.kontainers.runner.KontainerRunner
 
 /**
  * Provides a base implementation's [GenericKontainer.waitForReady] based on

@@ -4,7 +4,6 @@ import io.microkt.kontainers.domain.GenericTcpKontainer
 import io.microkt.kontainers.domain.Kontainer
 import io.microkt.kontainers.domain.KontainerSpec
 import io.microkt.kontainers.domain.PlatformKontainer
-import io.microkt.kontainers.runner.KontainerRunner
 
 /**
  * Provides a Redis [Kontainer].

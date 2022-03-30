@@ -3,7 +3,6 @@ package io.microkt.kontainers.docker.runner
 import io.microkt.kontainers.docker.client.DockerExternalApiClient
 import io.microkt.kontainers.docker.client.DockerFacade
 import io.microkt.kontainers.docker.domain.DockerKontainer
-import io.microkt.kontainers.domain.Kontainer
 import io.microkt.kontainers.domain.KontainerSpec
 import io.microkt.kontainers.domain.PlatformKontainer
 import io.microkt.kontainers.runner.KontainerRunner
@@ -20,12 +19,12 @@ class DockerKontainerRunner(
     private val log = KotlinLogging.logger { }
 
     override suspend fun create(kontainerSpec: KontainerSpec): PlatformKontainer {
-        log.debug { "Will request Docker container: $kontainerSpec" }
+        log.info { "Will request Docker container: $kontainerSpec" }
 
         if (!dockerFacade.imageExists(kontainerSpec.image)) {
-            log.debug { "Docker image ${kontainerSpec.image} not found, pulling... " }
+            log.info { "Docker image ${kontainerSpec.image} not found, pulling... " }
             val pullResponseItem = dockerFacade.pull(kontainerSpec.image)
-            log.debug { "Pulled Docker image $pullResponseItem" }
+            log.info { "Pulled Docker image $pullResponseItem" }
         }
 
         val result = dockerFacade.create(kontainerSpec)

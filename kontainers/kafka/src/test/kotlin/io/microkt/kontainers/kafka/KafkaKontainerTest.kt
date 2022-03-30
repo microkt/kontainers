@@ -6,18 +6,16 @@ import org.apache.kafka.clients.admin.KafkaAdminClient
 import org.apache.kafka.clients.admin.NewTopic
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Assertions.assertTrue
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.Tags
 import org.junit.jupiter.api.Test
 import java.util.Optional
 import java.util.concurrent.TimeUnit
 
-// @Disabled("unstable")
+// FIXME: needs k8s support, arm64 compat and non-default port support
 @Kontainers
 @Tags(
-    Tag("docker"),
-    Tag("kubernetes")
+    Tag("docker")
 )
 internal class KafkaKontainerTest(private val kafkaKontainer: KafkaKontainer) {
 

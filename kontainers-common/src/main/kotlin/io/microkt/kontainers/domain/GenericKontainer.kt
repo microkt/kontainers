@@ -1,7 +1,5 @@
 package io.microkt.kontainers.domain
 
-import io.microkt.kontainers.runner.KontainerRunner
-
 /**
  * Provides an abstract [Kontainer] implementation to handle common
  * Kontainer actions. Delegates to a platform specific [parent] Kontainer
