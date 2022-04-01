@@ -1,6 +1,5 @@
 package io.microkt.kontainers.kafka
 
-import io.microkt.kontainers.config.KontainerPropertyDelegate
 import io.microkt.kontainers.domain.BoundKontainerPort
 import io.microkt.kontainers.domain.GenericTcpKontainer
 import io.microkt.kontainers.domain.Kontainer
@@ -42,17 +41,11 @@ class KafkaKontainerFactory : KontainerFactory<KafkaKontainer> {
             environment = mutableMapOf("KAFKA_CFG_ZOOKEEPER_CONNECT" to zookeeperAddress)
                 .also { env ->
                     kontainerSpec.environment.forEach { (k, v) -> env.putIfAbsent(k, v) }
-                    if (KontainerRunnerFactory.determineBackend() == KontainerRunnerFactory.Backend.DOCKER) {
-                        env["KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP"] = "CLIENT:PLAINTEXT,EXTERNAL:PLAINTEXT"
-                        env["KAFKA_CFG_LISTENERS"] = "CLIENT://:9092,EXTERNAL://:9093"
-                        env["KAFKA_CFG_ADVERTISED_LISTENERS"] = "CLIENT://localhost:9092,EXTERNAL://localhost:$bindPort"
-                        env["KAFKA_CFG_INTER_BROKER_LISTENER_NAME"] = "CLIENT"
-                    } else {
-                        env["KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP"] = "CLIENT:PLAINTEXT,EXTERNAL:PLAINTEXT"
-                        env["KAFKA_CFG_LISTENERS"] = "CLIENT://:9092,EXTERNAL://:9093"
-                        env["KAFKA_CFG_ADVERTISED_LISTENERS"] = "CLIENT://localhost:9092,EXTERNAL://:9093"
-                        env["KAFKA_CFG_INTER_BROKER_LISTENER_NAME"] = "CLIENT"
-                    }
+                    env["KAFKA_CFG_ADVERTISED_LISTENERS"] =
+                        when (KontainerRunnerFactory.determineBackend()) {
+                            KontainerRunnerFactory.Backend.DOCKER -> "CLIENT://localhost:9092,EXTERNAL://localhost:$bindPort"
+                            else -> "CLIENT://localhost:9092,EXTERNAL://:9093"
+                        }
                 },
             ports = kontainerSpec.ports.map { kontainerPort ->
                 when (kontainerPort.port) {
