@@ -22,7 +22,7 @@ internal class KafkaKontainerTest(private val kafkaKontainer: KafkaKontainer) {
 
     private val adminClient = KafkaAdminClient.create(
         mapOf(
-            AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG to "localhost:${kafkaKontainer.getPort(9093)}"
+            AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG to "${kafkaKontainer.getAddress()}:${kafkaKontainer.getPort(9093)}"
         )
     )
 
