@@ -71,18 +71,13 @@ fun createServiceSpec(spec: KontainerSpec, pod: V1Pod, serviceType: String = "No
         .withType(serviceType)
         .withSelector<String, String>(mapOf("app" to pod.metadata!!.name))
         .withPorts(
-            // spec.ports.map { port ->
-            //     V1ServicePortBuilder()
-            //         .withName(port.port.toString())
-            //         .withPort(port.port)
-            //         .withNewTargetPort(port.port)
-            //         .build()
-            // }
-            V1ServicePortBuilder()
-                .withName(spec.ports.first().port.toString())
-                .withPort(spec.ports.first().port)
-                .withNewTargetPort(spec.ports.first().port)
-                .build()
+            spec.ports.map { kontainerPort ->
+                V1ServicePortBuilder()
+                    .withName(kontainerPort.port.toString())
+                    .withPort(kontainerPort.port)
+                    .withNewTargetPort(kontainerPort.port)
+                    .build()
+            }
         )
         .endSpec()
         .build()
