@@ -2,7 +2,6 @@ package io.microkt.kontainers.kafka
 
 import io.microkt.kontainers.domain.GB
 import io.microkt.kontainers.dsl.kontainerSpec
-import kotlin.math.exp
 
 val kafkaKontainerSpec = kontainerSpec() {
     name = "kafka"

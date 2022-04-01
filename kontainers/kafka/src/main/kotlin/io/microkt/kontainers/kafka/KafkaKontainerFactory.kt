@@ -7,7 +7,6 @@ import io.microkt.kontainers.domain.KontainerFactory
 import io.microkt.kontainers.domain.KontainerSpec
 import io.microkt.kontainers.runner.KontainerRunner
 import io.microkt.kontainers.runner.KontainerRunnerFactory
-import io.microkt.kontainers.zookeeper.ZookeeperKontainer
 import io.microkt.kontainers.zookeeper.zookeeperKontainerSpec
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
