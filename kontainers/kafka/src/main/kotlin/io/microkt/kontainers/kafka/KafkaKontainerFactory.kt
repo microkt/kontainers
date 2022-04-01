@@ -7,6 +7,7 @@ import io.microkt.kontainers.domain.KontainerFactory
 import io.microkt.kontainers.domain.KontainerSpec
 import io.microkt.kontainers.runner.KontainerRunner
 import io.microkt.kontainers.runner.KontainerRunnerFactory
+import io.microkt.kontainers.zookeeper.ZookeeperKontainer
 import io.microkt.kontainers.zookeeper.zookeeperKontainerSpec
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -35,30 +36,40 @@ class KafkaKontainerFactory : KontainerFactory<KafkaKontainer> {
     private fun randomPort(): Int =
         ServerSocket(0).use { it.localPort }
 
-    override fun createKontainer(kontainerSpec: KontainerSpec): KafkaKontainer = runBlocking(Dispatchers.IO) {
+    private fun remapKontainerSpec(kontainerSpec: KontainerSpec, zookeeperAddress: String): KontainerSpec {
         val bindPort = randomPort()
-        val dependencies: Set<Kontainer> = createDependencies()
-        dependencies.map { async { it.start(30_000) } }.awaitAll()
-
-        // we know there's only one
-        val zkKontainer = dependencies.first()
-        val zkAddress = "${zkKontainer.getDirectAddress()}:${zkKontainer.kontainerSpec.ports.first().port}"
-
-        val customKafkaSpec = kontainerSpec.copy(
-            environment = mutableMapOf("KAFKA_CFG_ZOOKEEPER_CONNECT" to zkAddress)
+        return kontainerSpec.copy(
+            environment = mutableMapOf("KAFKA_CFG_ZOOKEEPER_CONNECT" to zookeeperAddress)
                 .also { env ->
-                    env.putAll(kontainerSpec.environment)
                     if (KontainerRunnerFactory.determineBackend() == KontainerRunnerFactory.Backend.DOCKER) {
-                        env["KAFKA_CFG_ADVERTISED_LISTENERS"] = "PLAINTEXT://127.0.0.1:9092"
+                        kontainerSpec.environment.forEach { (k, v) ->
+                            env[k] =
+                                when (k) {
+                                    "KAFKA_CFG_ADVERTISED_LISTENERS" -> v.replace("9093", bindPort.toString())
+                                    else -> v
+                                }
+                        }
+                    } else {
+                        env.putAll(kontainerSpec.environment)
                     }
                 },
             ports = kontainerSpec.ports.map { kontainerPort ->
                 when (kontainerPort.port) {
-                    9092 -> BoundKontainerPort.of(kontainerPort, 9092)
+                    9093 -> BoundKontainerPort.of(kontainerPort, bindPort)
                     else -> kontainerPort
                 }
             }
         )
+    }
+
+    override fun createKontainer(kontainerSpec: KontainerSpec): KafkaKontainer = runBlocking(Dispatchers.IO) {
+        val dependencies: Set<Kontainer> = createDependencies()
+        dependencies.map { async { it.start(30_000) } }.awaitAll()
+
+        // TODO: allow specs to define dependencies
+        val zkKontainer = dependencies.first()
+        val zkAddress = "${zkKontainer.getDirectAddress()}:${zkKontainer.kontainerSpec.ports.first().port}"
+        val customKafkaSpec = remapKontainerSpec(kontainerSpec, zkAddress)
 
         return@runBlocking KafkaKontainer(
             kontainerSpec = customKafkaSpec,
