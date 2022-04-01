@@ -4,8 +4,6 @@ import io.kubernetes.client.custom.Quantity
 import io.kubernetes.client.openapi.models.V1ContainerPort
 import io.kubernetes.client.openapi.models.V1EnvVar
 import io.kubernetes.client.openapi.models.V1EnvVarBuilder
-import io.kubernetes.client.openapi.models.V1EnvVarSource
-import io.kubernetes.client.openapi.models.V1EnvVarSourceBuilder
 import io.kubernetes.client.openapi.models.V1Pod
 import io.kubernetes.client.openapi.models.V1PodBuilder
 import io.kubernetes.client.openapi.models.V1ResourceRequirements
