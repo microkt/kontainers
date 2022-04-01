@@ -15,7 +15,8 @@ import java.util.concurrent.TimeUnit
 // FIXME: needs k8s support, arm64 compat and non-default port support
 @Kontainers
 @Tags(
-    Tag("docker")
+    Tag("docker"),
+    Tag("kubernetes")
 )
 internal class KafkaKontainerTest(private val kafkaKontainer: KafkaKontainer) {
 
