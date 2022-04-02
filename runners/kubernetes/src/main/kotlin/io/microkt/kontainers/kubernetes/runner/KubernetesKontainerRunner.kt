@@ -3,7 +3,6 @@ package io.microkt.kontainers.kubernetes.runner
 import io.kubernetes.client.openapi.models.V1Pod
 import io.kubernetes.client.openapi.models.V1Service
 import io.microkt.kontainers.config.KontainerPropertyDelegate
-import io.microkt.kontainers.domain.Kontainer
 import io.microkt.kontainers.domain.KontainerSpec
 import io.microkt.kontainers.domain.PlatformKontainer
 import io.microkt.kontainers.kubernetes.client.CheckedKubernetesApiClient

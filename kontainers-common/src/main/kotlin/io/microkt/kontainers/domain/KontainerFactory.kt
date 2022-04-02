@@ -31,3 +31,8 @@ interface KontainerFactory<T : Kontainer> {
      */
     fun supports(kontainerKClass: KClass<out Kontainer>): Boolean
 }
+
+inline fun <reified T : Kontainer> createKontainer(kontainerSpec: KontainerSpec, delegate: PlatformKontainer): T =
+    T::class.constructors
+        .first { it.parameters.size == 2 }
+        .call(kontainerSpec, delegate)

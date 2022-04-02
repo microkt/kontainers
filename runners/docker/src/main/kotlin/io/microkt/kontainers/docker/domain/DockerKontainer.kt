@@ -3,7 +3,6 @@ package io.microkt.kontainers.docker.domain
 import com.github.dockerjava.api.command.InspectContainerResponse
 import io.microkt.kontainers.docker.runner.DockerKontainerRunner
 import io.microkt.kontainers.docker.runner.isOsLinux
-import io.microkt.kontainers.domain.Kontainer
 import io.microkt.kontainers.domain.KontainerSpec
 import io.microkt.kontainers.domain.PlatformKontainer
 import mu.KotlinLogging
