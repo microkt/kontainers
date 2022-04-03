@@ -1,7 +1,7 @@
-# Module MySQL Kontainer
+# Module MariaDB Kontainer
 
-Provides [MySQL](https://www.mysql.com/) Kontainer support.
+Provides [MariaDB](https://mariadb.org) Kontainer support.
 
-# Package io.microkt.kontainers.mysql
+# Package io.microkt.kontainers.mariadb
 
-Provides a MySQL Kontainer, factory, and default Kontainer specification.
+Provides a MariaDB Kontainer, factory, and default Kontainer specification.
