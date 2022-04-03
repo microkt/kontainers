@@ -20,6 +20,7 @@ include("logging")
 include("kontainers-junit5")
 
 include("kontainers-kafka")
+include("kontainers-keycloak")
 include("kontainers-localstack")
 include("kontainers-mariadb")
 include("kontainers-mongodb")
@@ -33,6 +34,7 @@ project(":kontainers-runner-kubernetes").projectDir = File(rootProject.projectDi
 project(":kontainers-runner-factory").projectDir = File(rootProject.projectDir, "./runners/runner-factory")
 
 project(":kontainers-kafka").projectDir = File(rootProject.projectDir, "./kontainers/kafka")
+project(":kontainers-keycloak").projectDir = File(rootProject.projectDir, "./kontainers/keycloak")
 project(":kontainers-localstack").projectDir = File(rootProject.projectDir, "./kontainers/localstack")
 project(":kontainers-mariadb").projectDir = File(rootProject.projectDir, "./kontainers/mariadb")
 project(":kontainers-mongodb").projectDir = File(rootProject.projectDir, "./kontainers/mongodb")
