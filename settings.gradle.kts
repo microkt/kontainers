@@ -21,6 +21,7 @@ include("kontainers-junit5")
 
 include("kontainers-kafka")
 include("kontainers-localstack")
+include("kontainers-mariadb")
 include("kontainers-mongodb")
 include("kontainers-mysql")
 include("kontainers-postgresql")
@@ -33,6 +34,7 @@ project(":kontainers-runner-factory").projectDir = File(rootProject.projectDir, 
 
 project(":kontainers-kafka").projectDir = File(rootProject.projectDir, "./kontainers/kafka")
 project(":kontainers-localstack").projectDir = File(rootProject.projectDir, "./kontainers/localstack")
+project(":kontainers-mariadb").projectDir = File(rootProject.projectDir, "./kontainers/mariadb")
 project(":kontainers-mongodb").projectDir = File(rootProject.projectDir, "./kontainers/mongodb")
 project(":kontainers-mysql").projectDir = File(rootProject.projectDir, "./kontainers/mysql")
 project(":kontainers-postgresql").projectDir = File(rootProject.projectDir, "./kontainers/postgresql")
