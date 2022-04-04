@@ -8,10 +8,21 @@ plugins {
 }
 
 allprojects {
+    apply {
+        plugin("org.jlleitschuh.gradle.ktlint")
+    }
+
     group = "io.mircokt.kontainers"
     version = "1.0.0-alpha1"
     repositories {
         mavenCentral()
+    }
+
+    configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
+        reporters {
+            reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.PLAIN_GROUP_BY_FILE)
+            reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.CHECKSTYLE)
+        }
     }
 }
 
@@ -43,13 +54,6 @@ subprojects {
         testImplementation("io.mockk:mockk:$mockkVersion")
         testRuntimeOnly("ch.qos.logback:logback-classic:$logbackVersion")
         testRuntimeOnly(project(":logging"))
-    }
-
-    configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
-        reporters {
-            reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.PLAIN_GROUP_BY_FILE)
-            reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.CHECKSTYLE)
-        }
     }
 
     tasks.withType<KotlinCompile> {

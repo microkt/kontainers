@@ -28,10 +28,12 @@ include("kontainers-postgresql")
 include("kontainers-redis")
 include("kontainers-zookeeper")
 
+// Runners
 project(":kontainers-runner-docker").projectDir = File(rootProject.projectDir, "./runners/docker")
 project(":kontainers-runner-kubernetes").projectDir = File(rootProject.projectDir, "./runners/kubernetes")
 project(":kontainers-runner-factory").projectDir = File(rootProject.projectDir, "./runners/runner-factory")
 
+// Kontainers
 project(":kontainers-kafka").projectDir = File(rootProject.projectDir, "./kontainers/kafka")
 project(":kontainers-localstack").projectDir = File(rootProject.projectDir, "./kontainers/localstack")
 project(":kontainers-mariadb").projectDir = File(rootProject.projectDir, "./kontainers/mariadb")
@@ -40,3 +42,6 @@ project(":kontainers-mysql").projectDir = File(rootProject.projectDir, "./kontai
 project(":kontainers-postgresql").projectDir = File(rootProject.projectDir, "./kontainers/postgresql")
 project(":kontainers-redis").projectDir = File(rootProject.projectDir, "./kontainers/redis")
 project(":kontainers-zookeeper").projectDir = File(rootProject.projectDir, "./kontainers/zookeeper")
+
+// Integrations
+project(":kontainers-junit5").projectDir = File(rootProject.projectDir, "./integrations/junit-jupiter")
