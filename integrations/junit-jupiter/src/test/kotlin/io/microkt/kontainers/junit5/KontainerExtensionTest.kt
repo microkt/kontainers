@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test
 )
 internal class KontainerExtensionTest(
     private val redis: RedisKontainer,
-    @KontainerSpecOverride(image = "redis:6.2-buster")
+    @KontainerSpecOverride(RedisBusterSpecProvider::class)
     private val redis2: RedisKontainer
 ) {
     private val client: RedisClient = RedisClient.create(RedisURI.create(redis.getAddress(), redis.getPort()!!))

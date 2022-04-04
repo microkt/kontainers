@@ -1,9 +1,11 @@
 package io.microkt.kontainers.mysql
 
+import io.microkt.kontainers.domain.KontainerSpec
+import io.microkt.kontainers.dsl.kontainerSpec
+import io.microkt.kontainers.junit5.KontainerProvider
 import io.microkt.kontainers.junit5.annotation.KontainerSpecOverride
 import io.microkt.kontainers.junit5.annotation.Kontainers
 import io.microkt.kontainers.localstack.LocalStackKontainer
-import io.microkt.kontainers.localstack.LocalStackKontainer.Env.SERVICES
 import io.microkt.kontainers.localstack.localStackKontainerSpec
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Tag
@@ -16,13 +18,22 @@ import org.junit.jupiter.api.Test
     Tag("kubernetes")
 )
 internal class LocalStackKontainerTest(
-    @KontainerSpecOverride(
-        environment = ["$SERVICES=sqs"]
-    )
+    @KontainerSpecOverride(LocalStackCustomProvider::class)
     private val localstack: LocalStackKontainer
 ) {
     @Test
     fun testValidPort() {
         Assertions.assertNotNull(localstack.getPort(localStackKontainerSpec.ports.first().port))
+    }
+
+    companion object {
+        class LocalStackCustomProvider : KontainerProvider {
+            override fun override(kontainerSpec: KontainerSpec): KontainerSpec =
+                kontainerSpec(kontainerSpec) {
+                    environment {
+                        set("SERVICES" to "sqs")
+                    }
+                }
+        }
     }
 }
