@@ -10,7 +10,9 @@ import io.microkt.kontainers.junit5.annotation.KontainerSpecOverride
  * @author Scott Rossillo
  * @see KontainerSpecOverride
  */
-internal class KontainerSpecCustomizer(private val kontainerSpec: KontainerSpec) {
+class KontainerSpecCustomizer(
+    private val kontainerSpec: KontainerSpec
+) {
     /**
      * Applies overrides from the given [kontainerSpecOverride] to the
      * [io.microkt.kontainers.domain.Kontainer] annotated with the given
@@ -22,13 +24,10 @@ internal class KontainerSpecCustomizer(private val kontainerSpec: KontainerSpec)
      * [KontainerSpec.environment].
      */
     fun customize(kontainerSpecOverride: KontainerSpecOverride): KontainerSpec =
-        kontainerSpec.copy(
-            image = kontainerSpecOverride.image.ifBlank { kontainerSpec.image },
-            environment = kontainerSpec.environment.toMutableMap().also {
-                kontainerSpecOverride.environment.forEach { e ->
-                    val (name, value) = e.split('=', limit = 2)
-                    it[name] = value
-                }
-            }
-        )
+        kontainerSpecOverride
+            .value
+            .constructors
+            .first { it.parameters.isEmpty() }
+            .call()
+            .override(kontainerSpec)
 }

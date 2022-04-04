@@ -1,7 +1,9 @@
 package io.microkt.kontainers.junit5.extension
 
+import io.microkt.kontainers.domain.KontainerSpec
 import io.microkt.kontainers.domain.MB
 import io.microkt.kontainers.dsl.kontainerSpec
+import io.microkt.kontainers.junit5.KontainerProvider
 import io.microkt.kontainers.junit5.annotation.KontainerSpecOverride
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Tag
@@ -24,18 +26,39 @@ internal class KontainerSpecCustomizerTest {
         }
     }
 
+    internal class FooImageOverrideProvider : KontainerProvider {
+        override fun override(kontainerSpec: KontainerSpec): KontainerSpec =
+            kontainerSpec(kontainerSpec) {
+                image = "foo:2"
+            }
+    }
+
+    internal class FooEnvironmentOverrideProvider : KontainerProvider {
+        override fun override(kontainerSpec: KontainerSpec): KontainerSpec =
+            kontainerSpec(kontainerSpec) {
+                environment { set("BAR" to "baz") }
+            }
+    }
+
+    internal class FooEnvironmentReplaceValueProvider : KontainerProvider {
+        override fun override(kontainerSpec: KontainerSpec): KontainerSpec =
+            kontainerSpec(kontainerSpec) {
+                environment { set("FOO" to "baz") }
+            }
+    }
+
     private val customizer = KontainerSpecCustomizer(spec)
 
     @Test
     fun customizeImageOnly() {
-        val override = customizer.customize(KontainerSpecOverride(image = "foo:2", environment = arrayOf()))
+        val override = customizer.customize(KontainerSpecOverride(FooImageOverrideProvider::class))
         assertEquals("foo:2", override.image)
         assertEquals(spec.environment, override.environment)
     }
 
     @Test
     fun customizeEnvironmentOnly() {
-        val override = customizer.customize(KontainerSpecOverride(image = "", environment = arrayOf("BAR=baz")))
+        val override = customizer.customize(KontainerSpecOverride(FooEnvironmentOverrideProvider::class))
         val expectedEnv = spec.environment.toMutableMap().also { it["BAR"] = "baz" }
         assertEquals("foo:1", override.image)
         assertEquals(expectedEnv, override.environment)
@@ -43,7 +66,7 @@ internal class KontainerSpecCustomizerTest {
 
     @Test
     fun customizeEnvironmentReplaceValue() {
-        val override = customizer.customize(KontainerSpecOverride(image = "", environment = arrayOf("FOO=baz")))
+        val override = customizer.customize(KontainerSpecOverride(FooEnvironmentReplaceValueProvider::class))
         val expectedEnv = spec.environment.toMutableMap().also { it["FOO"] = "baz" }
         assertEquals("foo:1", override.image)
         assertEquals(expectedEnv, override.environment)
