@@ -45,4 +45,3 @@ project(":kontainers-zookeeper").projectDir = File(rootProject.projectDir, "./ko
 
 // Integrations
 project(":kontainers-junit5").projectDir = File(rootProject.projectDir, "./integrations/junit-jupiter")
-
