@@ -12,6 +12,7 @@ pluginManagement {
 rootProject.name = "kontainers-parent"
 
 include("kontainers-common")
+include("kontainers-context")
 include("kontainers-runner-docker")
 include("kontainers-runner-kubernetes")
 include("kontainers-runner-factory")
@@ -44,4 +45,5 @@ project(":kontainers-redis").projectDir = File(rootProject.projectDir, "./kontai
 project(":kontainers-zookeeper").projectDir = File(rootProject.projectDir, "./kontainers/zookeeper")
 
 // Integrations
+project(":kontainers-context").projectDir = File(rootProject.projectDir, "./integrations/context")
 project(":kontainers-junit5").projectDir = File(rootProject.projectDir, "./integrations/junit-jupiter")

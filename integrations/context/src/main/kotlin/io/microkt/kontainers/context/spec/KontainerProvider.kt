@@ -1,4 +1,4 @@
-package io.microkt.kontainers.junit5
+package io.microkt.kontainers.context.spec
 
 import io.microkt.kontainers.domain.KontainerSpec
 

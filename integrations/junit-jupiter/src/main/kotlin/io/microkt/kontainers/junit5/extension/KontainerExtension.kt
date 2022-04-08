@@ -1,11 +1,12 @@
 package io.microkt.kontainers.junit5.extension
 
+import io.microkt.kontainers.context.spec.KontainerSpecCustomizer
+import io.microkt.kontainers.context.spec.KontainerSpecOverride
 import io.microkt.kontainers.domain.JdbcKontainer
 import io.microkt.kontainers.domain.Kontainer
 import io.microkt.kontainers.domain.KontainerFactory
 import io.microkt.kontainers.domain.KontainerSpec
 import io.microkt.kontainers.domain.R2dbcKontainer
-import io.microkt.kontainers.junit5.annotation.KontainerSpecOverride
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll

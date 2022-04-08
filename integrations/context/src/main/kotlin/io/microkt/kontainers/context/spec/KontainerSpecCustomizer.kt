@@ -1,7 +1,6 @@
-package io.microkt.kontainers.junit5.extension
+package io.microkt.kontainers.context.spec
 
 import io.microkt.kontainers.domain.KontainerSpec
-import io.microkt.kontainers.junit5.annotation.KontainerSpecOverride
 
 /**
  * Applies customizations to a [KontainerSpec] created with [KontainerSpecOverride]

@@ -1,10 +1,11 @@
-package io.microkt.kontainers.junit5.extension
+package io.microkt.kontainers.junit5.context.spec
 
+import io.microkt.kontainers.context.spec.KontainerProvider
+import io.microkt.kontainers.context.spec.KontainerSpecCustomizer
+import io.microkt.kontainers.context.spec.KontainerSpecOverride
 import io.microkt.kontainers.domain.KontainerSpec
 import io.microkt.kontainers.domain.MB
 import io.microkt.kontainers.dsl.kontainerSpec
-import io.microkt.kontainers.junit5.KontainerProvider
-import io.microkt.kontainers.junit5.annotation.KontainerSpecOverride
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.Test

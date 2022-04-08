@@ -2,7 +2,7 @@ package io.microkt.kontainers.junit5
 
 import io.lettuce.core.RedisClient
 import io.lettuce.core.RedisURI
-import io.microkt.kontainers.junit5.annotation.KontainerSpecOverride
+import io.microkt.kontainers.context.spec.KontainerSpecOverride
 import io.microkt.kontainers.junit5.annotation.Kontainers
 import io.microkt.kontainers.redis.RedisKontainer
 import org.junit.jupiter.api.Assertions.assertEquals
