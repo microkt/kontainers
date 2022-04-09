@@ -1,9 +1,7 @@
 plugins {
     kotlin("jvm")
     kotlin("kapt")
-    // id("org.jetbrains.kotlin.kapt")
     id("io.micronaut.application") version "3.3.2"
-    id("org.jetbrains.kotlin.plugin.allopen") version "1.6.10"
 }
 
 val junitVersion: String by project
@@ -14,11 +12,10 @@ dependencies {
     api(project(":kontainers-context"))
 
     testImplementation(platform("io.micronaut:micronaut-bom:$micronautVersion"))
-    kapt(platform("io.micronaut:micronaut-bom:$micronautVersion"))
+    kaptTest(platform("io.micronaut:micronaut-bom:$micronautVersion"))
 
-    // kapt("io.micronaut:micronaut-inject-java")
-    kapt("io.micronaut:micronaut-http-validation")
-    kapt("io.micronaut.data:micronaut-data-processor")
+    kaptTest("io.micronaut:micronaut-http-validation")
+    kaptTest("io.micronaut.data:micronaut-data-processor")
 
     testImplementation(project(":kontainers-postgresql"))
     testImplementation(project(":kontainers-redis"))
@@ -58,23 +55,6 @@ tasks.withType<org.jetbrains.dokka.gradle.DokkaTaskPartial>().configureEach {
         }
     }
 }
-
-/*
-graalvmNative.toolchainDetection.set(false)
- */
-tasks {
-    compileKotlin {
-        kotlinOptions {
-            jvmTarget = "11"
-        }
-    }
-    compileTestKotlin {
-        kotlinOptions {
-            jvmTarget = "11"
-        }
-    }
-}
-graalvmNative.toolchainDetection.set(false)
 
 micronaut {
     runtime("netty")
