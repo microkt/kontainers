@@ -11,10 +11,11 @@ import org.junit.jupiter.api.extension.BeforeAllCallback
 import org.junit.jupiter.api.extension.ExtensionContext
 
 /**
- * Provides a JUnit Jupiter extension capable of running a single database
+ * Provides an opinionated JUnit Jupiter extension capable of running a single database
  * Kontainer for integration testing.
  *
  * @author Scott Rossillo
+ * @see io.microkt.kontainers.junit5.annotation.Kontainers
  */
 class DatabaseKontainerExtension : BeforeAllCallback, AfterAllCallback, AbstractKontainerExtension() {
     private val ns: ExtensionContext.Namespace = ExtensionContext.Namespace.create(DatabaseKontainerExtension::class)

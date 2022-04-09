@@ -3,7 +3,7 @@ plugins {
 }
 
 val junitVersion: String by project
-val springBootVersion: String = "2.6.4"
+val springBootVersion: String = "2.6.6"
 
 dependencies {
     api(project(":kontainers-context"))

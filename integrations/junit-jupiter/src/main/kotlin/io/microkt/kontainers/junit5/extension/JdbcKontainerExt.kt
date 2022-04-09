@@ -8,8 +8,7 @@ private val log = KotlinLogging.logger { }
 
 fun JdbcKontainer.isDatabaseReady(): Boolean =
     try {
-        DriverManager.getConnection(this.createJdbcUrl(), this.getUsername(), this.getPassword())
-        true
+        DriverManager.getConnection(this.createJdbcUrl(), this.getUsername(), this.getPassword()).use { true }
     } catch (e: Exception) {
         log.info { "Database not yet ready: ${e.message}" }
         false
