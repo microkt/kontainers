@@ -1,16 +1,18 @@
 pluginManagement {
+    val dokkaVersion: String by settings
     val kotlinVersion: String by settings
     val ktLintVersion: String by settings
 
     plugins {
         kotlin("jvm") version kotlinVersion
-        id("org.jetbrains.dokka") version kotlinVersion
+        id("org.jetbrains.dokka") version dokkaVersion
         id("org.jlleitschuh.gradle.ktlint") version ktLintVersion
     }
 }
 
 rootProject.name = "kontainers-parent"
 
+// Common
 include("kontainers-common")
 include("kontainers-context")
 include("kontainers-runner-docker")
@@ -18,9 +20,12 @@ include("kontainers-runner-kubernetes")
 include("kontainers-runner-factory")
 include("logging")
 
+// Integrations
 include("kontainers-junit5")
+include("kontainers-micronaut")
 include("kontainers-spring-boot-test")
 
+// Kontainers
 include("kontainers-kafka")
 include("kontainers-localstack")
 include("kontainers-mariadb")
@@ -48,4 +53,5 @@ project(":kontainers-zookeeper").projectDir = File(rootProject.projectDir, "./ko
 // Integrations
 project(":kontainers-context").projectDir = File(rootProject.projectDir, "./integrations/context")
 project(":kontainers-junit5").projectDir = File(rootProject.projectDir, "./integrations/junit-jupiter")
+project(":kontainers-micronaut").projectDir = File(rootProject.projectDir, "./integrations/micronaut")
 project(":kontainers-spring-boot-test").projectDir = File(rootProject.projectDir, "./integrations/spring-boot-test")
