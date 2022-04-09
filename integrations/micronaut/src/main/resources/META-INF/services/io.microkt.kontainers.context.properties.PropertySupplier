@@ -1,0 +1,2 @@
+io.microkt.kontainers.micronaut.properties.MicronautDataSourcePropertySupplier
+io.microkt.kontainers.micronaut.properties.MicronautFlywayDataSourcePropertySupplier
