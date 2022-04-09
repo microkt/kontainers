@@ -1,12 +1,18 @@
-package io.microkt.kontainers.context.properties
+package io.microkt.kontainers.spring.properties
 
+import io.microkt.kontainers.context.properties.PropertySupplier
 import io.microkt.kontainers.domain.JdbcKontainer
 import io.microkt.kontainers.domain.Kontainer
+import mu.KotlinLogging
 
-object SpringFlywayDataSourcePropertySupplier : PropertySupplier {
+class SpringFlywayDataSourcePropertySupplier : PropertySupplier {
+    private val log = KotlinLogging.logger { }
     override fun supply(kontainer: Kontainer): Map<String, String> =
         when (kontainer is JdbcKontainer) {
-            true -> supplyProps(kontainer)
+            true -> {
+                log.info { "Exporting Spring Flyway DataSource properties" }
+                supplyProps(kontainer)
+            }
             false -> mapOf()
         }
 

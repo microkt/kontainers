@@ -19,6 +19,7 @@ include("kontainers-runner-factory")
 include("logging")
 
 include("kontainers-junit5")
+include("kontainers-spring-boot-test")
 
 include("kontainers-kafka")
 include("kontainers-localstack")
@@ -47,3 +48,4 @@ project(":kontainers-zookeeper").projectDir = File(rootProject.projectDir, "./ko
 // Integrations
 project(":kontainers-context").projectDir = File(rootProject.projectDir, "./integrations/context")
 project(":kontainers-junit5").projectDir = File(rootProject.projectDir, "./integrations/junit-jupiter")
+project(":kontainers-spring-boot-test").projectDir = File(rootProject.projectDir, "./integrations/spring-boot-test")

@@ -1,0 +1,3 @@
+io.microkt.kontainers.spring.properties.SpringDataSourcePropertySupplier
+io.microkt.kontainers.spring.properties.SpringFlywayDataSourcePropertySupplier
+io.microkt.kontainers.spring.properties.SpringR2dbcPropertySupplier

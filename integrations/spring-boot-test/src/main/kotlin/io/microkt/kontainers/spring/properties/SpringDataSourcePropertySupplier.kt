@@ -1,9 +1,10 @@
-package io.microkt.kontainers.context.properties
+package io.microkt.kontainers.spring.properties
 
+import io.microkt.kontainers.context.properties.PropertySupplier
 import io.microkt.kontainers.domain.JdbcKontainer
 import io.microkt.kontainers.domain.Kontainer
 
-object SpringDataSourcePropertySupplier : PropertySupplier {
+class SpringDataSourcePropertySupplier : PropertySupplier {
     override fun supply(kontainer: Kontainer): Map<String, String> =
         when (kontainer is JdbcKontainer) {
             true ->

@@ -1,11 +1,11 @@
-package io.microkt.kontainers.context.properties
+package io.microkt.kontainers.spring.properties
 
+import io.microkt.kontainers.context.properties.PropertySupplier
 import io.microkt.kontainers.domain.Kontainer
 import io.microkt.kontainers.domain.R2dbcKontainer
 import mu.KotlinLogging
 
-object SpringR2dbcPropertySupplier : PropertySupplier {
-    private const val PROP_PREFIX = "spring.r2dbc"
+class SpringR2dbcPropertySupplier : PropertySupplier {
     private val log = KotlinLogging.logger { }
     override fun supply(kontainer: Kontainer): Map<String, String> =
         if (kontainer is R2dbcKontainer) {
@@ -18,4 +18,8 @@ object SpringR2dbcPropertySupplier : PropertySupplier {
         } else {
             mapOf()
         }
+
+    companion object {
+        private const val PROP_PREFIX = "spring.r2dbc"
+    }
 }

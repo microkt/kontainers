@@ -7,7 +7,7 @@ import kotlin.reflect.KClass
 
 private val loader = lazy { ServiceLoader.load(KontainerFactory::class.java) }
 
-internal fun findFactory(kontainerKClass: KClass<Kontainer>): KontainerFactory<out Kontainer>? {
+internal fun findFactory(kontainerKClass: KClass<out Kontainer>): KontainerFactory<out Kontainer>? {
     val serviceLoader = loader.value
 
     if (serviceLoader.toCollection(mutableListOf()).isEmpty()) {
