@@ -32,7 +32,7 @@ class MariaKontainer(
         "jdbc:mariadb://${this.getAddress()}:${this.getPort()}/${this.getDatabaseName()}"
 
     override fun getDatabaseName(): String =
-        kontainerSpec.environment[Env.MYSQL_DATABASE]!!
+        kontainerSpec.environment[Env.MARIADB_DATABASE]!!
 
     override fun getUsername(): String = kontainerSpec.environment[Env.MARIADB_USER]!!
 
@@ -42,7 +42,7 @@ class MariaKontainer(
      * MySQL Kontainer environment variables.
      */
     object Env {
-        const val MYSQL_DATABASE = "MYSQL_DATABASE"
+        const val MARIADB_DATABASE = "MARIADB_DATABASE"
         const val MARIADB_USER = "MARIADB_USER"
         const val MARIADB_PASSWORD = "MARIADB_PASSWORD"
         const val MARIADB_ROOT_PASSWORD = "MARIADB_ROOT_PASSWORD"
