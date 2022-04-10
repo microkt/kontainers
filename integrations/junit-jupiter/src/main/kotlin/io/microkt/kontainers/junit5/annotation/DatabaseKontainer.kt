@@ -1,5 +1,6 @@
 package io.microkt.kontainers.junit5.annotation
 
+import io.microkt.kontainers.context.properties.PropertySupplier
 import io.microkt.kontainers.domain.JdbcKontainer
 import io.microkt.kontainers.junit5.extension.DatabaseKontainerExtension
 import org.junit.jupiter.api.extension.ExtendWith
@@ -15,5 +16,7 @@ import kotlin.reflect.KClass
 @Target(AnnotationTarget.CLASS)
 @ExtendWith(DatabaseKontainerExtension::class)
 annotation class DatabaseKontainer(
-    val value: KClass<out JdbcKontainer>
+    val value: KClass<out JdbcKontainer>,
+    val propertySuppliers: Array<KClass<out PropertySupplier>> = [],
+    val useDefaultPropertySuppliers: Boolean = true
 )

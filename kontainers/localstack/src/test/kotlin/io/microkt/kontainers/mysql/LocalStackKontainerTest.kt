@@ -1,7 +1,7 @@
 package io.microkt.kontainers.mysql
 
-import io.microkt.kontainers.context.spec.KontainerProvider
 import io.microkt.kontainers.context.spec.KontainerSpecOverride
+import io.microkt.kontainers.context.spec.KontainerSpecProvider
 import io.microkt.kontainers.domain.KontainerSpec
 import io.microkt.kontainers.dsl.kontainerSpec
 import io.microkt.kontainers.junit5.annotation.Kontainers
@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test
     Tag("kubernetes")
 )
 internal class LocalStackKontainerTest(
-    @KontainerSpecOverride(LocalStackCustomProvider::class)
+    @KontainerSpecOverride(LocalStackCustomSpecProvider::class)
     private val localstack: LocalStackKontainer
 ) {
     @Test
@@ -27,7 +27,7 @@ internal class LocalStackKontainerTest(
     }
 
     companion object {
-        class LocalStackCustomProvider : KontainerProvider {
+        class LocalStackCustomSpecProvider : KontainerSpecProvider {
             override fun override(kontainerSpec: KontainerSpec): KontainerSpec =
                 kontainerSpec(kontainerSpec) {
                     environment {

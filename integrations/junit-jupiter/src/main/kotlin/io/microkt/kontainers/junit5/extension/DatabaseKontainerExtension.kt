@@ -6,6 +6,7 @@ import io.microkt.kontainers.junit5.annotation.DatabaseKontainer
 import io.microkt.kontainers.runner.retryOperation
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
+import mu.KotlinLogging
 import org.junit.jupiter.api.extension.AfterAllCallback
 import org.junit.jupiter.api.extension.BeforeAllCallback
 import org.junit.jupiter.api.extension.ExtensionContext
@@ -18,6 +19,7 @@ import org.junit.jupiter.api.extension.ExtensionContext
  * @see io.microkt.kontainers.junit5.annotation.Kontainers
  */
 class DatabaseKontainerExtension : BeforeAllCallback, AfterAllCallback, AbstractKontainerExtension() {
+    private val log = KotlinLogging.logger { }
     private val ns: ExtensionContext.Namespace = ExtensionContext.Namespace.create(DatabaseKontainerExtension::class)
 
     private fun isReady(kontainer: Kontainer): Boolean =
@@ -40,8 +42,12 @@ class DatabaseKontainerExtension : BeforeAllCallback, AfterAllCallback, Abstract
             }
         }
 
-        kontainerStarted(kontainer)
         context.getStore(ns).put(KONTAINER, kontainer)
+        kontainerStarted(
+            kontainer = kontainer,
+            customPropertySuppliers = listOf(*ann.propertySuppliers),
+            useDefaultPropertySuppliers = ann.useDefaultPropertySuppliers
+        )
     }
 
     override fun afterAll(context: ExtensionContext) {

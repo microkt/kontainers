@@ -15,5 +15,5 @@ annotation class KontainerSpecOverride(
     /**
      * TODO: docs
      */
-    val value: KClass<out KontainerProvider>
+    val value: KClass<out KontainerSpecProvider>
 )

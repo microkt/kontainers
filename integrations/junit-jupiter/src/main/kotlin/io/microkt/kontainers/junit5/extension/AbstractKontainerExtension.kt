@@ -29,8 +29,31 @@ abstract class AbstractKontainerExtension {
         return KontainerSpecCustomizer(kontainerSpec).customize(override)
     }
 
-    fun kontainerStarted(kontainer: Kontainer) {
-        propertySupplierLoader.value.forEach { supplier ->
+    fun kontainerStarted(
+        kontainer: Kontainer,
+        customPropertySuppliers: List<KClass<out PropertySupplier>> = listOf(),
+        useDefaultPropertySuppliers: Boolean = true
+    ) {
+        populateEnvironment(kontainer, customPropertySuppliers, useDefaultPropertySuppliers)
+    }
+
+    fun populateEnvironment(
+        kontainer: Kontainer,
+        customPropertySuppliers: List<KClass<out PropertySupplier>>,
+        useDefaultPropertySuppliers: Boolean = true
+    ) {
+        if (useDefaultPropertySuppliers) {
+            propertySupplierLoader.value.forEach { supplier ->
+                supplier.supply(kontainer).forEach { (k, v) ->
+                    log.info { "setting sys prop $k=$v" }
+                    System.setProperty(k, v)
+                }
+            }
+        }
+
+        customPropertySuppliers.map { supplier: KClass<out PropertySupplier> ->
+            supplier.constructors.first { it.parameters.isEmpty() }.call()
+        }.forEach { supplier ->
             supplier.supply(kontainer).forEach { (k, v) ->
                 log.info { "setting sys prop $k=$v" }
                 System.setProperty(k, v)
