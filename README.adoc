@@ -43,7 +43,7 @@ depending on the capabilities of the platform on which your code is run.
 IMPORTANT: Kontainers is currently prerelease software. API contracts and
 behavior are subject to change.
 
-Please refer to the [Kontainers' Documentation](https://microkt.io/docs/kontainers/overview).
+Please refer to the https://microkt.io/docs/kontainers/overview[Kontainers' Documentation].
 
 == Contributing
 
