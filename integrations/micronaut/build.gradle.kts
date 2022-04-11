@@ -42,7 +42,7 @@ dependencies {
 tasks.withType<org.jetbrains.dokka.gradle.DokkaTaskPartial>().configureEach {
     dokkaSourceSets {
         named("main") {
-            moduleName.set("Kontainers Micronaut")
+            moduleName.set("Micronaut Integration")
             includes.from("MODULES.md")
 
             samples.from(

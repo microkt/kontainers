@@ -16,7 +16,7 @@ dependencies {
 tasks.withType<org.jetbrains.dokka.gradle.DokkaTaskPartial>().configureEach {
     dokkaSourceSets {
         named("main") {
-            moduleName.set("MySQL Kontainer")
+            moduleName.set("MariaDB Kontainer")
             includes.from("MODULES.md")
             samples.from(
                 "$projectDir/src/main/kotlin",

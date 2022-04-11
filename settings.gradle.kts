@@ -23,7 +23,7 @@ include("logging")
 // Integrations
 include("kontainers-junit5")
 include("kontainers-micronaut")
-include("kontainers-spring-boot-test")
+include("kontainers-spring-boot")
 
 // Kontainers
 include("kontainers-kafka")
@@ -54,4 +54,4 @@ project(":kontainers-zookeeper").projectDir = File(rootProject.projectDir, "./ko
 project(":kontainers-context").projectDir = File(rootProject.projectDir, "./integrations/context")
 project(":kontainers-junit5").projectDir = File(rootProject.projectDir, "./integrations/junit-jupiter")
 project(":kontainers-micronaut").projectDir = File(rootProject.projectDir, "./integrations/micronaut")
-project(":kontainers-spring-boot-test").projectDir = File(rootProject.projectDir, "./integrations/spring-boot-test")
+project(":kontainers-spring-boot").projectDir = File(rootProject.projectDir, "./integrations/spring-boot")

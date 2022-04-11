@@ -1,4 +1,4 @@
-# Module Kontainers Micronaut
+# Module Micronaut Integration
 
 Provides Kontainers' support for [Micronaut](https://microkt.io/docs/kontainers/guides/micronaut).
 
