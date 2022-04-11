@@ -17,6 +17,11 @@ to define a request to run a container using a simple, [domain specific language
 on either Docker or Kubernetes, depending on the capabilities of the platform on
 which your code is run.
 
+## Getting Started
+
+To start working with Kontainers, read the [Kontainers Getting Started Guide][getting-started].
+
+[getting-started]: https://microkt.io/docs/kontainers/guides/getting-started
 [kontainers-dsl]: https://fixme.example.com
 [Kotlin]: https://kotlinlang.org/
 [kotlin-server-side]: https://kotlinlang.org/lp/server-side/
