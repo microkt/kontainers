@@ -1,9 +1,10 @@
-# Module Kontainers Context
+# Module Kontainers Spring Boot
 
-# Package io.microkt.kontainers.context.properties
+Provides Kontainer's support for [Spring Boot].
 
-TODO: document me
+# Package io.microkt.kontainers.spring.properties
 
-# Package io.microkt.kontainers.context.spec
+Property suppliers for Spring Boot.
 
-TODO: document me
+
+[Spring Boot]: https://microkt.io/docs/kontainers/guides/spring

@@ -12,11 +12,11 @@ import org.junit.jupiter.api.extension.BeforeAllCallback
 import org.junit.jupiter.api.extension.ExtensionContext
 
 /**
- * Provides an opinionated JUnit Jupiter extension capable of running a single database
- * Kontainer for integration testing.
+ * Provides an opinionated [JUnit Jupiter extension](https://junit.org/junit5/docs/current/user-guide/#extensions)
+ * capable of running a single database Kontainer for integration testing.
  *
  * @author Scott Rossillo
- * @see io.microkt.kontainers.junit5.annotation.Kontainers
+ * @see io.microkt.kontainers.junit5.annotation.DatabaseKontainer
  */
 class DatabaseKontainerExtension : BeforeAllCallback, AfterAllCallback, AbstractKontainerExtension() {
     private val log = KotlinLogging.logger { }

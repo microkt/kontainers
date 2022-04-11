@@ -16,7 +16,19 @@ import kotlin.reflect.KClass
 @Target(AnnotationTarget.CLASS)
 @ExtendWith(DatabaseKontainerExtension::class)
 annotation class DatabaseKontainer(
+    /**
+     * The [JdbcKontainer] [KClass] to make available for integration testing.
+     */
     val value: KClass<out JdbcKontainer>,
+
+    /**
+     * Custom [PropertySupplier]s to configure the integration test environment.
+     */
     val propertySuppliers: Array<KClass<out PropertySupplier>> = [],
+
+    /**
+     * True to register properties from any [PropertySuppliers] on the classpath;
+     * false otherwise.
+     */
     val useDefaultPropertySuppliers: Boolean = true
 )
