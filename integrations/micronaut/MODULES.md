@@ -1,9 +1,7 @@
-# Module Kontainers Context
+# Module Micronaut Integration
 
-# Package io.microkt.kontainers.context.properties
+Provides Kontainers' support for [Micronaut](https://microkt.io/docs/kontainers/guides/micronaut).
 
-TODO: document me
+# Package io.microkt.kontainers.micronaut.properties
 
-# Package io.microkt.kontainers.context.spec
-
-TODO: document me
+Property suppliers for Micronaut.

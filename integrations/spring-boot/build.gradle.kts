@@ -34,7 +34,7 @@ dependencies {
 tasks.withType<org.jetbrains.dokka.gradle.DokkaTaskPartial>().configureEach {
     dokkaSourceSets {
         named("main") {
-            moduleName.set("Kontainers Integration Context")
+            moduleName.set("Spring Boot Integration")
             includes.from("MODULES.md")
 
             samples.from(

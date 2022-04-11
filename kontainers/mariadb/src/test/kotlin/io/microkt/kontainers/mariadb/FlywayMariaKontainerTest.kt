@@ -14,7 +14,7 @@ import javax.sql.DataSource
     Tag("docker"),
     Tag("kubernetes")
 )
-internal class FlywayMariaKontainerTest(private val mariaKontainer: MariaKontainer) {
+internal class FlywayMariaKontainerTest(mariaKontainer: MariaKontainer) {
     private var dataSource: DataSource = buildHikariDataSource(mariaKontainer)
 
     init {
