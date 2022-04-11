@@ -1,0 +1,37 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+
+module:Kontainers Common
+io.microkt.kontainers.config
+io.microkt.kontainers.domain
+io.microkt.kontainers.domain.readiness
+io.microkt.kontainers.dsl
+io.microkt.kontainers.runner
+module:Kontainers Integration Context
+io.microkt.kontainers.context.properties
+io.microkt.kontainers.context.spec
+module:Kontainers JUnit 5
+io.microkt.kontainers.junit5.annotation
+io.microkt.kontainers.junit5.extension
+module:Kafka Kontainer
+io.microkt.kontainers.kafka
+module:LocalStack Kontainer
+io.microkt.kontainers.localstack
+module:MariaDB Kontainer
+io.microkt.kontainers.mariadb
+module:Micronaut Integration
+io.microkt.kontainers.micronaut.properties
+module:MongoDB Kontainer
+io.microkt.kontainers.mongo
+module:MySQL Kontainer
+io.microkt.kontainers.mysql
+module:PostgreSQL Kontainer
+io.microkt.kontainers.postgresql
+module:Redis Kontainer
+io.microkt.kontainers.redis
+module:Kontainers Factory
+io.microkt.kontainers.runner
+module:Spring Boot Integration
+io.microkt.kontainers.spring.properties
+module:Zookeeper Kontainer
+io.microkt.kontainers.zookeeper

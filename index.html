@@ -1,0 +1,226 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>All modules</title>
+<link href="images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+const savedDarkMode = storage ? JSON.parse(storage) : false
+if(savedDarkMode === true){
+    document.getElementsByTagName("html")[0].classList.add("theme-dark")
+}</script>
+<script type="text/javascript" src="scripts/sourceset_dependencies.js" async="async"></script><link href="styles/style.css" rel="Stylesheet"><link href="styles/jetbrains-mono.css" rel="Stylesheet"><link href="styles/main.css" rel="Stylesheet"><link href="styles/prism.css" rel="Stylesheet"><link href="styles/logo-styles.css" rel="Stylesheet"><script type="text/javascript" src="scripts/clipboard.js" async="async"></script><script type="text/javascript" src="scripts/navigation-loader.js" async="async"></script><script type="text/javascript" src="scripts/platform-content-handler.js" async="async"></script><script type="text/javascript" src="scripts/main.js" defer="defer"></script><script type="text/javascript" src="scripts/prism.js" async="async"></script>  </head>
+  <body>
+    <div class="navigation-wrapper" id="navigation-wrapper">
+      <div id="leftToggler"><span class="icon-toggler"></span></div>
+      <div class="library-name"><a href="index.html">Kontainers</a></div>
+      <div>1.0.0-alpha1</div>
+      <div class="pull-right d-flex"><button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+      </div>
+    </div>
+    <div id="container">
+      <div id="leftColumn">
+        <div id="sideMenu"></div>
+      </div>
+      <div id="main">
+        <div class="main-content" id="content" pageIds="Kontainers::.ext/allModules///PointingToDeclaration//0">
+          <div class="breadcrumbs"></div>
+          <div class="cover ">
+            <div class="cover ">
+              <h1 class="">Kontainers</h1>
+              <p class="paragraph">Kontainers is a <a href="https://kotlinlang.org/">Kotlin</a> framework providing the capability to run <a href="https://opencontainers.org/">Open Container Images</a> (OCI) on Docker, Kubernetes, and possibly other platforms in the near future. This can be valuable in cases where you want to run a database or messaging system for integration testing and then tear down such resources after tests complete.</p>
+              <p class="paragraph">Kontainers enables users to write and run integration tests locally with <a href="https://www.docker.com/products/docker-desktop">Docker Desktop</a> or <a href="https://minikube.sigs.k8s.io/docs/start/">Minikube</a>, while also utilizing modern, Kubernetes based CI/CD systems that may not permit or support the Docker runtime.</p>
+              <h2 class=""> Architecture</h2>
+              <p class="paragraph">Kontainers provides a platform-agnostic Kontainer specification that allows users to define a request to run a container using a simple, <a href="https://fixme.example.com">domain specific language</a> (DSL). The specification is then used by a Kontainer factory to start the container on either Docker or Kubernetes, depending on the capabilities of the platform on which your code is run.</p>
+              <h2 class=""> Getting Started</h2>
+              <p class="paragraph">To start working with Kontainers, read the <a href="https://microkt.io/docs/kontainers/guides/getting-started">Kontainers Getting Started Guide</a>.</p>
+            </div>
+            <h2 class="">All modules:</h2>
+            <div class="table"><a data-name="-1407789922%2FMain%2F0" anchor-label="Kafka Kontainer" id="-1407789922%2FMain%2F0" data-filterable-set=""></a>
+              <div class="table-row">
+                <div class="main-subrow ">
+                  <div class="w-100"><span class="inline-flex">
+                      <div><a href="kontainers-kafka/index.html">Kafka Kontainer</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1407789922%2FMain%2F0"></span>
+                        <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                      </span></span></div>
+                  <div><span class="brief-comment">
+                      <p class="paragraph">Experimental Kontainers' support for Apache Kafka.</p>
+                    </span></div>
+                </div>
+              </div>
+<a data-name="-852750356%2FMain%2F0" anchor-label="Kontainers Common" id="-852750356%2FMain%2F0" data-filterable-set=""></a>
+              <div class="table-row">
+                <div class="main-subrow ">
+                  <div class="w-100"><span class="inline-flex">
+                      <div><a href="kontainers-common/index.html">Kontainers Common</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-852750356%2FMain%2F0"></span>
+                        <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                      </span></span></div>
+                  <div><span class="brief-comment">
+                      <p class="paragraph">Defines the Kontainers domain, DSL, and specifications for platforms capable of running Kontainer instances.</p>
+                    </span></div>
+                </div>
+              </div>
+<a data-name="1378007009%2FMain%2F0" anchor-label="Kontainers Factory" id="1378007009%2FMain%2F0" data-filterable-set=""></a>
+              <div class="table-row">
+                <div class="main-subrow ">
+                  <div class="w-100"><span class="inline-flex">
+                      <div><a href="kontainers-runner-factory/index.html">Kontainers Factory</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1378007009%2FMain%2F0"></span>
+                        <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                      </span></span></div>
+                  <div><span class="brief-comment">
+                      <p class="paragraph">Provides factories for running Kontainers on various backends.</p>
+                    </span></div>
+                </div>
+              </div>
+<a data-name="1306949832%2FMain%2F0" anchor-label="Kontainers Integration Context" id="1306949832%2FMain%2F0" data-filterable-set=""></a>
+              <div class="table-row">
+                <div class="main-subrow ">
+                  <div class="w-100"><span class="inline-flex">
+                      <div><a href="kontainers-context/index.html">Kontainers Integration Context</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1306949832%2FMain%2F0"></span>
+                        <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                      </span></span></div>
+                  <div><span class="brief-comment"></span></div>
+                </div>
+              </div>
+<a data-name="-1822780056%2FMain%2F0" anchor-label="Kontainers JUnit 5" id="-1822780056%2FMain%2F0" data-filterable-set=""></a>
+              <div class="table-row">
+                <div class="main-subrow ">
+                  <div class="w-100"><span class="inline-flex">
+                      <div><a href="kontainers-junit5/index.html">Kontainers JUnit 5</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1822780056%2FMain%2F0"></span>
+                        <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                      </span></span></div>
+                  <div><span class="brief-comment">
+                      <p class="paragraph">Provides a <a href="https://junit.org/junit5/docs/current/user-guide/#extensions">JUnit Jupiter extension</a> to simplify using Kontainers in JUnit 5 test suites. If you are using Kontainers for integration testing, this is the simplest way to get started.</p>
+                    </span></div>
+                </div>
+              </div>
+<a data-name="-685821681%2FMain%2F0" anchor-label="LocalStack Kontainer" id="-685821681%2FMain%2F0" data-filterable-set=""></a>
+              <div class="table-row">
+                <div class="main-subrow ">
+                  <div class="w-100"><span class="inline-flex">
+                      <div><a href="kontainers-localstack/index.html">LocalStack Kontainer</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-685821681%2FMain%2F0"></span>
+                        <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                      </span></span></div>
+                  <div><span class="brief-comment">
+                      <p class="paragraph">Kontainer support for <a href="https://localstack.cloud/">LocalStack</a>.</p>
+                    </span></div>
+                </div>
+              </div>
+<a data-name="-1635974128%2FMain%2F0" anchor-label="MariaDB Kontainer" id="-1635974128%2FMain%2F0" data-filterable-set=""></a>
+              <div class="table-row">
+                <div class="main-subrow ">
+                  <div class="w-100"><span class="inline-flex">
+                      <div><a href="kontainers-mariadb/index.html">MariaDB Kontainer</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1635974128%2FMain%2F0"></span>
+                        <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                      </span></span></div>
+                  <div><span class="brief-comment">
+                      <p class="paragraph">Provides <a href="https://mariadb.org">MariaDB</a> Kontainer support.</p>
+                    </span></div>
+                </div>
+              </div>
+<a data-name="597057283%2FMain%2F0" anchor-label="Micronaut Integration" id="597057283%2FMain%2F0" data-filterable-set=""></a>
+              <div class="table-row">
+                <div class="main-subrow ">
+                  <div class="w-100"><span class="inline-flex">
+                      <div><a href="kontainers-micronaut/index.html">Micronaut Integration</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="597057283%2FMain%2F0"></span>
+                        <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                      </span></span></div>
+                  <div><span class="brief-comment">
+                      <p class="paragraph">Provides Kontainers' support for <a href="https://microkt.io/docs/kontainers/guides/micronaut">Micronaut</a>.</p>
+                    </span></div>
+                </div>
+              </div>
+<a data-name="-1286980398%2FMain%2F0" anchor-label="MongoDB Kontainer" id="-1286980398%2FMain%2F0" data-filterable-set=""></a>
+              <div class="table-row">
+                <div class="main-subrow ">
+                  <div class="w-100"><span class="inline-flex">
+                      <div><a href="kontainers-mongodb/index.html">MongoDB Kontainer</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1286980398%2FMain%2F0"></span>
+                        <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                      </span></span></div>
+                  <div><span class="brief-comment">
+                      <p class="paragraph">Provides <a href="https://www.mongodb.com/">MongoDB</a> Kontainer support.</p>
+                    </span></div>
+                </div>
+              </div>
+<a data-name="1896688066%2FMain%2F0" anchor-label="MySQL Kontainer" id="1896688066%2FMain%2F0" data-filterable-set=""></a>
+              <div class="table-row">
+                <div class="main-subrow ">
+                  <div class="w-100"><span class="inline-flex">
+                      <div><a href="kontainers-mysql/index.html">MySQL Kontainer</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1896688066%2FMain%2F0"></span>
+                        <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                      </span></span></div>
+                  <div><span class="brief-comment">
+                      <p class="paragraph">Provides <a href="https://www.mysql.com/">MySQL</a> Kontainer support.</p>
+                    </span></div>
+                </div>
+              </div>
+<a data-name="1622387800%2FMain%2F0" anchor-label="PostgreSQL Kontainer" id="1622387800%2FMain%2F0" data-filterable-set=""></a>
+              <div class="table-row">
+                <div class="main-subrow ">
+                  <div class="w-100"><span class="inline-flex">
+                      <div><a href="kontainers-postgresql/index.html">PostgreSQL Kontainer</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1622387800%2FMain%2F0"></span>
+                        <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                      </span></span></div>
+                  <div><span class="brief-comment">
+                      <p class="paragraph">Provides <a href="https://www.postgresql.org/">PostgreSQL</a> Kontainer support.</p>
+                    </span></div>
+                </div>
+              </div>
+<a data-name="1953062441%2FMain%2F0" anchor-label="Redis Kontainer" id="1953062441%2FMain%2F0" data-filterable-set=""></a>
+              <div class="table-row">
+                <div class="main-subrow ">
+                  <div class="w-100"><span class="inline-flex">
+                      <div><a href="kontainers-redis/index.html">Redis Kontainer</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1953062441%2FMain%2F0"></span>
+                        <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                      </span></span></div>
+                  <div><span class="brief-comment">
+                      <p class="paragraph">Module for running <a href="https://redis.io/">Redis</a> Kontainers.</p>
+                    </span></div>
+                </div>
+              </div>
+<a data-name="-1159641996%2FMain%2F0" anchor-label="Spring Boot Integration" id="-1159641996%2FMain%2F0" data-filterable-set=""></a>
+              <div class="table-row">
+                <div class="main-subrow ">
+                  <div class="w-100"><span class="inline-flex">
+                      <div><a href="kontainers-spring-boot/index.html">Spring Boot Integration</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1159641996%2FMain%2F0"></span>
+                        <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                      </span></span></div>
+                  <div><span class="brief-comment">
+                      <p class="paragraph">Provides Kontainer's support for <a href="https://microkt.io/docs/kontainers/guides/spring">Spring Boot</a>.</p>
+                    </span></div>
+                </div>
+              </div>
+<a data-name="-2022173512%2FMain%2F0" anchor-label="Zookeeper Kontainer" id="-2022173512%2FMain%2F0" data-filterable-set=""></a>
+              <div class="table-row">
+                <div class="main-subrow ">
+                  <div class="w-100"><span class="inline-flex">
+                      <div><a href="kontainers-zookeeper/index.html">Zookeeper Kontainer</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2022173512%2FMain%2F0"></span>
+                        <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                      </span></span></div>
+                  <div><span class="brief-comment">
+                      <p class="paragraph">Kontainer support for Apache <a href="https://zookeeper.apache.org/">Zookeeper</a>.</p>
+                    </span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer"><span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2022 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span></div>
+      </div>
+    </div>
+  </body>
+</html>
+
