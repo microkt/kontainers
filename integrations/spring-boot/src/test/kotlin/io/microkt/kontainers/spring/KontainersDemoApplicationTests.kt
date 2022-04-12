@@ -4,7 +4,10 @@ import io.microkt.example.app.KontainersDemoApplication
 import io.microkt.example.app.domain.Animal
 import io.microkt.example.app.repository.ReactiveAnimalRepository
 import io.microkt.kontainers.junit5.annotation.DatabaseKontainer
+import io.microkt.kontainers.junit5.annotation.Kontainer
 import io.microkt.kontainers.postgresql.PostgresKontainer
+import io.microkt.kontainers.redis.RedisKontainer
+import io.microkt.kontainers.redis.spring.SpringBootRedisPropertySupplier
 import kotlinx.coroutines.reactive.awaitFirst
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -25,6 +28,7 @@ import org.springframework.data.relational.core.query.Query.query
 )
 @SpringBootTest(classes = [KontainersDemoApplication::class])
 @DatabaseKontainer(PostgresKontainer::class)
+@Kontainer(RedisKontainer::class, propertySuppliers = [SpringBootRedisPropertySupplier::class])
 class KontainersDemoApplicationTests {
     @Autowired
     private lateinit var template: R2dbcEntityTemplate

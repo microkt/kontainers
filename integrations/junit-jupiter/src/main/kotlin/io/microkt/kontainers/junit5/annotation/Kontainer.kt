@@ -1,25 +1,24 @@
 package io.microkt.kontainers.junit5.annotation
 
 import io.microkt.kontainers.context.properties.PropertySupplier
-import io.microkt.kontainers.domain.JdbcKontainer
-import io.microkt.kontainers.junit5.extension.DatabaseKontainerExtension
+import io.microkt.kontainers.junit5.extension.GenericKontainerExtension
 import org.junit.jupiter.api.extension.ExtendWith
 import kotlin.reflect.KClass
 
 /**
  * Annotation indicating the JUnit test suite should be [extended with][ExtendWith]
  * the [JUnit Jupiter extension](https://junit.org/junit5/docs/current/user-guide/#extensions)
- * [DatabaseKontainerExtension].
+ * [GenericKontainerExtension].
  *
  * @author Scott Rossillo
  */
 @Target(AnnotationTarget.CLASS)
-@ExtendWith(DatabaseKontainerExtension::class)
-annotation class DatabaseKontainer(
+@ExtendWith(GenericKontainerExtension::class)
+annotation class Kontainer(
     /**
-     * The [JdbcKontainer] [KClass] to make available for integration testing.
+     * The [Kontainer] [KClass] to make available for integration testing.
      */
-    val value: KClass<out JdbcKontainer>,
+    val value: KClass<out io.microkt.kontainers.domain.Kontainer>,
 
     /**
      * Custom [PropertySupplier]s to configure the integration test environment.

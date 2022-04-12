@@ -4,6 +4,7 @@ plugins {
 
 dependencies {
     api(project(":kontainers-common"))
+    api(project(":kontainers-context"))
     api(project(":kontainers-runner-factory"))
 
     testImplementation(project(":kontainers-junit5"))

@@ -1,4 +1,4 @@
-package io.microkt.kontainers.spring.properties
+package io.microkt.kontainers.spring.properties.datasource
 
 import io.microkt.kontainers.context.properties.PropertySupplier
 import io.microkt.kontainers.domain.Kontainer
