@@ -1,17 +1,17 @@
-package io.microkt.kontainers.redis.spring
+package io.microkt.kontainers.redis.micronaut
 
 import io.microkt.kontainers.context.properties.PropertySupplier
 import io.microkt.kontainers.domain.Kontainer
 import io.microkt.kontainers.redis.RedisKontainer
 
 /**
- * Spring Boot Redis [PropertySupplier].
+ * Micronaut Redis [PropertySupplier].
  *
  * @author Scott Rossillo
  *
  * @sample io.microkt.kontainers.redis.RedisPropertySupplierTest
  */
-class SpringBootRedisPropertySupplier : PropertySupplier {
+class MicronautRedisPropertySupplier : PropertySupplier {
     override fun supply(kontainer: Kontainer): Map<String, String> =
         when (kontainer) {
             is RedisKontainer -> redisProps(kontainer)
@@ -20,7 +20,6 @@ class SpringBootRedisPropertySupplier : PropertySupplier {
 
     private fun redisProps(kontainer: RedisKontainer): Map<String, String> =
         mapOf(
-            "spring.redis.host" to kontainer.getAddress()!!,
-            "spring.redis.port" to kontainer.getPort()!!.toString()
+            "redis.uri" to "redis://${kontainer.getAddress()}/${kontainer.getPort()}"
         )
 }
