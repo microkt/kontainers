@@ -64,13 +64,13 @@ internal fun createPodSpec(spec: KontainerSpec, uniqueName: String): V1Pod =
             V1ResourceRequirements()
                 .limits(
                     mapOf(
-                        "cpu" to Quantity.fromString("0.99"),
+                        "cpu" to Quantity.fromString("900m"),
                         "memory" to Quantity(BigDecimal.valueOf(spec.resources.memory.toLong()), Quantity.Format.DECIMAL_SI)
                     )
                 )
                 .requests(
                     mapOf(
-                        "cpu" to Quantity.fromString("0.99"),
+                        "cpu" to Quantity.fromString("500m"),
                         "memory" to Quantity(BigDecimal.valueOf(spec.resources.memory.toLong()), Quantity.Format.DECIMAL_SI)
                     )
                 )
