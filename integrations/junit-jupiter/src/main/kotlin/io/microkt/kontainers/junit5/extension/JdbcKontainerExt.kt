@@ -6,7 +6,7 @@ import java.sql.DriverManager
 
 private val log = KotlinLogging.logger { }
 
-fun JdbcKontainer.isDatabaseReady(): Boolean =
+internal fun JdbcKontainer.isDatabaseReady(): Boolean =
     try {
         DriverManager.getConnection(this.createJdbcUrl(), this.getUsername(), this.getPassword()).use { true }
     } catch (e: Exception) {

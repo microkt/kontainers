@@ -1,11 +1,11 @@
-package io.microkt.kontainers.spring.properties
+package io.microkt.kontainers.spring.properties.datasource
 
 import io.microkt.kontainers.context.properties.PropertySupplier
 import io.microkt.kontainers.domain.JdbcKontainer
 import io.microkt.kontainers.domain.Kontainer
 
 /**
- * [Property supplier][PropertySupplier] for Sping Boot Data Source.
+ * [Property supplier][PropertySupplier] for Spring Boot Data Source.
  *
  * @author Scott Rossillo
  * @sample io.microkt.kontainers.spring.KontainersDemoApplicationTests
