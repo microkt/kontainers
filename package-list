@@ -29,9 +29,11 @@ module:PostgreSQL Kontainer
 io.microkt.kontainers.postgresql
 module:Redis Kontainer
 io.microkt.kontainers.redis
+io.microkt.kontainers.redis.micronaut
+io.microkt.kontainers.redis.spring
 module:Kontainers Factory
 io.microkt.kontainers.runner
 module:Spring Boot Integration
-io.microkt.kontainers.spring.properties
+io.microkt.kontainers.spring.properties.datasource
 module:Zookeeper Kontainer
 io.microkt.kontainers.zookeeper
