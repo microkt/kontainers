@@ -12,6 +12,8 @@ import kotlin.reflect.KClass
  *
  * @author Scott Rossillo
  * @see DatabaseKontainerExtension
+ * @sample io.microkt.example.app.domain.Animal
+ * @sample io.microkt.example.app.repository.ReactiveAnimalRepository
  * @sample io.microkt.kontainers.spring.KontainersDemoApplicationTests
  */
 @Target(AnnotationTarget.CLASS)

@@ -21,7 +21,8 @@ tasks.withType<org.jetbrains.dokka.gradle.DokkaTaskPartial>().configureEach {
 
             samples.from(
                 "$projectDir/src/test/kotlin",
-                "${project.rootProject.projectDir}/integrations/spring-boot/src/test/kotlin"
+                "${project.rootProject.projectDir}/integrations/spring-boot/src/test/kotlin",
+                "${project.rootProject.projectDir}/integrations/spring-boot/src/test/resources"
             )
 
             externalDocumentationLink {
