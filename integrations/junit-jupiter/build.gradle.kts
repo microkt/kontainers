@@ -20,7 +20,8 @@ tasks.withType<org.jetbrains.dokka.gradle.DokkaTaskPartial>().configureEach {
             includes.from("MODULES.md")
 
             samples.from(
-                "$projectDir/src/test/kotlin"
+                "$projectDir/src/test/kotlin",
+                "${project.rootProject.projectDir}/integrations/spring-boot/src/test/kotlin"
             )
 
             externalDocumentationLink {

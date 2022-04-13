@@ -8,10 +8,11 @@ import kotlin.reflect.KClass
 
 /**
  * Annotation indicating the JUnit test suite should be [extended with][ExtendWith]
- * the [JUnit Jupiter extension](https://junit.org/junit5/docs/current/user-guide/#extensions)
- * [DatabaseKontainerExtension].
+ * the [DatabaseKontainerExtension] JUnit Jupiter Extension.
  *
  * @author Scott Rossillo
+ * @see DatabaseKontainerExtension
+ * @sample io.microkt.kontainers.spring.KontainersDemoApplicationTests
  */
 @Target(AnnotationTarget.CLASS)
 @ExtendWith(DatabaseKontainerExtension::class)
