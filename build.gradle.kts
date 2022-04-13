@@ -13,7 +13,7 @@ allprojects {
     }
 
     group = "io.mircokt.kontainers"
-    version = "1.0.0-alpha1"
+    version = "1.0.0-alpha.1"
     repositories {
         mavenCentral()
     }
