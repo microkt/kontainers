@@ -12,6 +12,8 @@ endif::[]
 :toclevels: 3
 :toc-title:
 
+image::https://github.com/microkt/kontainers/actions/workflows/ci.yml/badge.svg[Build Kontainers]
+
 == Purpose
 
 Kontainers is a Kotlin framework providing the capability to run Open Container Images (OCI) on
