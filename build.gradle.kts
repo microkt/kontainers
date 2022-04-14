@@ -94,11 +94,11 @@ subprojects {
         }
         repositories {
             maven {
-                name = "github"
-                url = uri("https://maven.pkg.github.com/microkt/kontainers")
+                name = "packagecloud"
+                url = uri("https://packagecloud.io/microkt/kontainers/java/maven2")
                 credentials {
-                    username = System.getenv("GITHUB_ACTOR") ?: ""
-                    password = System.getenv("GITHUB_TOKEN") ?: ""
+                    username = System.getenv("PACKAGECLOUD_TOKEN") ?: ""
+                    password = ""
                 }
             }
         }
