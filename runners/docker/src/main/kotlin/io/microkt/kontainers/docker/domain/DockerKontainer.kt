@@ -37,28 +37,22 @@ class DockerKontainer(
         dockerKontainerRunner.delete(id)
     }
 
-    override fun getPort(): Int {
-        assertContainerInfo()
-        val portBindings = containerInfo!!.networkSettings.ports.bindings
-        // FIXME: this may cause an exception AND may not be the right port, add test
-        val binding = portBindings.values.filterNotNull().first().filterNotNull().first()
-        return binding.hostPortSpec.toInt()
-    }
+    override fun getPort(): Int? =
+        this.getPort(kontainerSpec.ports.first().port)
 
-    override fun getPort(containerPort: Int): Int? {
-        val portBindings = containerInfo!!.networkSettings.ports.bindings
-        // FIXME: needs better code cov
-        val portMap = portBindings.entries.filter { it.value != null }.associate { (k, v) -> (k.port to v.first().hostPortSpec.toInt()) }
-        return portMap[containerPort]
-    }
+    override fun getPort(containerPort: Int): Int? =
+        containerInfo!!.networkSettings.ports.bindings.entries
+            .filter { it.value != null }
+            .firstOrNull() { (k, _) -> k.port == containerPort }
+            ?.value?.first()?.hostPortSpec?.toInt()
 
-    override fun getAddress(): String {
-        assertContainerInfo()
-        return if (isOsLinux()) containerInfo!!.networkSettings.gateway else "localhost"
-    }
+    override fun getAddress(): String =
+        assertContainerInfo().run {
+            return if (isOsLinux()) containerInfo!!.networkSettings.gateway else "localhost"
+        }
 
-    override fun getDirectAddress(): String? {
-        assertContainerInfo()
-        return containerInfo!!.networkSettings.networks.values.filterNotNull().first().ipAddress
-    }
+    override fun getDirectAddress(): String? =
+        assertContainerInfo().run {
+            return containerInfo!!.networkSettings.networks.values.filterNotNull().first().ipAddress
+        }
 }
